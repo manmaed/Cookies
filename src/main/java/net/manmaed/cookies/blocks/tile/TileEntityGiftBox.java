@@ -1,13 +1,13 @@
-package net.manmaed.cookies.blocks.giftbox;
+package net.manmaed.cookies.blocks.tile;
 
 import net.minecraft.tileentity.TileEntity;
 
 /**
  * Created by manmaed on 13/01/2019.
  */
-public class GiftBoxTileEntity extends TileEntity {
+public class TileEntityGiftBox extends TileEntity  {
 
-    public GiftBoxTileEntity() {
+    public TileEntityGiftBox() {
 
     }
 

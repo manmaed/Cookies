@@ -1,10 +1,11 @@
 package net.manmaed.cookies.blocks;
 
-import net.manmaed.cookies.Cookies;
-import net.manmaed.cookies.entity.tile.TEGiftBoxEntity;
-import net.manmaed.cookies.libs.Textures;
+import net.manmaed.cookies.blocks.tile.TileEntityGiftBox;
+import net.manmaed.cookies.libs.Reference;
+import net.manmaed.cookies.libs.RegistryHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
@@ -16,14 +17,13 @@ public class CookieBlocks {
 
     public static void load(){
         gingerBlock = new BlockGinger();
-        giftBox = new TEGiftBox();
+        giftBox = new BlockGiftBox();
 
-        Cookies.getRegistryHelper().registerBlock(gingerBlock);
-        Cookies.getRegistryHelper().registerBlock(giftBox);
-        GameRegistry.registerTileEntity(TEGiftBoxEntity.class, Textures.GIFT_BOX);
+        RegistryHelper.registerBlock(gingerBlock, "gingerBlock");
+        RegistryHelper.registerBlock(giftBox, "giftbox");
 
-        gingerBlock.setRegistryName("gingerBlock");
-        giftBox.setRegistryName("giftboxblock");
+        GameRegistry.registerTileEntity(TileEntityGiftBox.class, new ResourceLocation(Reference.MOD_ID, "tileEntityGiftBox"));
+
 
     }
 }

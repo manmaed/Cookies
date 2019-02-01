@@ -4,12 +4,7 @@ import net.manmaed.cookies.Cookies;
 import net.manmaed.cookies.items.base.CookieCutterBase;
 import net.manmaed.cookies.items.base.CookieFoodBase;
 import net.manmaed.cookies.items.base.CookieItemBase;
-import net.manmaed.cookies.items.cutters.*;
-import net.manmaed.cookies.items.food.*;
-import net.manmaed.cookies.items.ingredients.ChocPowder;
-import net.manmaed.cookies.items.ingredients.Ginger;
-import net.manmaed.cookies.items.ingredients.GingerPowder;
-import net.manmaed.cookies.items.ingredients.SugerPowder;
+import net.manmaed.cookies.libs.RegistryHelper;
 
 /**
  * Created by manmaed on 13/01/2019.
@@ -25,7 +20,7 @@ public class CookieItems {
     public static CookieItemBase sugarPowder;
     public static CookieItemBase gingerPowder;
     public static CookieItemBase ginger;
-    public static CookieItemBase chocPowder;
+    public static CookieItemBase chocolatePowder;
 
     //Cookie Cutters
     public static CookieCutterBase ccCircle;
@@ -35,7 +30,7 @@ public class CookieItems {
     public static CookieCutterBase ccTree;
 
     //Foods
-    public static CookieFoodBase chocChips;
+    public static CookieFoodBase chocolateChips;
     public static CookieFoodBase cookiedough;
     public static CookieFoodBase plainCircle;
     public static CookieFoodBase plainSquare;
@@ -45,13 +40,13 @@ public class CookieItems {
     public static CookieFoodBase sugarSquare;
     public static CookieFoodBase sugarStar;
 
-    public static CookieFoodBase chocCircle;
-    public static CookieFoodBase chocSquare;
-    public static CookieFoodBase chocStar;
+    public static CookieFoodBase chocolateCircle;
+    public static CookieFoodBase chocolateSquare;
+    public static CookieFoodBase chocolateStar;
 
-    public static CookieFoodBase doublechocCircle;
-    public static CookieFoodBase doublechocSquare;
-    public static CookieFoodBase doublechocStar;
+    public static CookieFoodBase doublechocolateCircle;
+    public static CookieFoodBase doublechocolateSquare;
+    public static CookieFoodBase doublechocolateStar;
 
     public static void load() {
         //Init'ing
@@ -60,111 +55,71 @@ public class CookieItems {
         yellowRibbon = new YellowRibbon();
 
         //Ingredients
-        sugarPowder = new SugerPowder();
-        gingerPowder = new GingerPowder();
-        ginger = new Ginger();
-        chocPowder = new ChocPowder();
+        sugarPowder = new CookieItemBase("sugarPowder");
+        gingerPowder = new CookieItemBase("gingerPower");
+        ginger = new CookieItemBase("ginger");
+        chocolatePowder = new CookieItemBase("chocolatePowder");
 
         //Cookie Cutters
-        ccCircle = new CookieCutterCircle();
-        ccGBMan = new CookieCutterGBMan();
-        ccSquare = new CookieCutterSquare();
-        ccStar = new CookieCutterStar();
-        ccTree = new CookieCutterTree();
+        ccCircle = new CookieCutterBase("circle");
+        ccGBMan = new CookieCutterBase("gbMan");
+        ccSquare = new CookieCutterBase("square");
+        ccStar = new CookieCutterBase("star");
+        ccTree = new CookieCutterBase("tree");
 
         //Foods
-        chocChips = new ChocChips(1, 0.2F);
-        cookiedough = new CookieDough(1,0.2F);
-        plainCircle = new PlainCookie(2, 0.4F);
-        plainSquare = new PlainSquareCookie(2, 0.4F);
-        plainStar = new PlainStarCookie(2, 0.4F);
+        chocolateChips = new CookieFoodBase("chocolateChips", 1, 0.2F);
+        cookiedough = new CookieFoodBase("cookieDough", 1,0.2F);
+        plainCircle = new CookieFoodBase("plainCircle", 2, 0.4F);
+        plainSquare = new CookieFoodBase("plainSquare", 2, 0.4F);
+        plainStar = new CookieFoodBase("plainStar", 2, 0.4F);
 
-        sugarCircle = new SugarCookie(2, 0.4F);
-        sugarSquare = new SugarSquareCookie(2, 0.4F);
-        sugarStar = new SugarStarCookie(2, 0.4F);
+        sugarCircle = new CookieFoodBase("sugarCircle", 2, 0.4F);
+        sugarSquare = new CookieFoodBase("sugarSquare", 2, 0.4F);
+        sugarStar = new CookieFoodBase("sugarStar", 2, 0.4F);
 
-        chocCircle = new ChocCookie(2, 0.4F);
-        chocSquare = new ChocSquareCookie(2, 0.4F);
-        chocStar = new ChocStarCookie(2, 0.4F);
+        chocolateCircle = new CookieFoodBase("chocolateCircle", 2, 0.4F);
+        chocolateSquare = new CookieFoodBase("chocolateSquare", 2, 0.4F);
+        chocolateStar = new CookieFoodBase("chocolateStar", 2, 0.4F);
 
-        doublechocCircle = new DoubleChocCookie(2, 0.4F);
-        doublechocSquare = new DoubleChocSquareCookie(2, 0.4F);
-        doublechocStar = new DoubleChocStarCookie(2, 0.4F);
-
-
+        doublechocolateCircle = new CookieFoodBase("doublechocolateCircle", 2, 0.4F);
+        doublechocolateSquare = new CookieFoodBase("doublechocolateSquare", 2, 0.4F);
+        doublechocolateStar = new CookieFoodBase("doublechocolateCircleStar", 2, 0.4F);
 
 
-        //Registering
-        /*MainClass.getRegistryHelper().registerItem(itemname);
-        itemname.setRegistryName("itemname");*/
-        Cookies.getRegistryHelper().registerItem(giftboxPlain);
-        Cookies.getRegistryHelper().registerItem(yellowRibbon);
+        RegistryHelper.registerItem(yellowRibbon, "ribbon_yellow");
 
         //Ingredients
-        Cookies.getRegistryHelper().registerItem(sugarPowder);
-        Cookies.getRegistryHelper().registerItem(gingerPowder);
-        Cookies.getRegistryHelper().registerItem(ginger);
-        Cookies.getRegistryHelper().registerItem(chocPowder);
+        RegistryHelper.registerItem(sugarPowder, "sugarpowder");
+        RegistryHelper.registerItem(gingerPowder, "gingerpowder");
+        RegistryHelper.registerItem(ginger, "ginger");
+        RegistryHelper.registerItem(chocolatePowder, "chocolate_powder");
 
         //Cutters
-        Cookies.getRegistryHelper().registerItem(ccCircle);
-        Cookies.getRegistryHelper().registerItem(ccGBMan);
-        Cookies.getRegistryHelper().registerItem(ccSquare);
-        Cookies.getRegistryHelper().registerItem(ccStar);
-        Cookies.getRegistryHelper().registerItem(ccTree);
+        RegistryHelper.registerItem(ccCircle, "cookie_cutter_circle");
+        RegistryHelper.registerItem(ccGBMan, "cookie_cutter_gbman");
+        RegistryHelper.registerItem(ccSquare, "cookie_cutter_square");
+        RegistryHelper.registerItem(ccStar, "cookie_cutter_star");
+        RegistryHelper.registerItem(ccTree, "cookie_cutter_tree");
 
         //Food
-        Cookies.getRegistryHelper().registerItem(chocChips);
-        Cookies.getRegistryHelper().registerItem(cookiedough);
-        Cookies.getRegistryHelper().registerItem(plainCircle);
-        Cookies.getRegistryHelper().registerItem(plainSquare);
-        Cookies.getRegistryHelper().registerItem(plainStar);
+        RegistryHelper.registerItem(chocolateChips, "chocolate_chips");
+        RegistryHelper.registerItem(cookiedough, "cookie_dough");
+        RegistryHelper.registerItem(plainCircle, "plain_cookie");
+        RegistryHelper.registerItem(plainSquare, "plain_cookie_square");
+        RegistryHelper.registerItem(plainStar, "plain_cookie_star");
 
-        Cookies.getRegistryHelper().registerItem(sugarCircle);
-        Cookies.getRegistryHelper().registerItem(sugarSquare);
-        Cookies.getRegistryHelper().registerItem(sugarStar);
+        RegistryHelper.registerItem(sugarCircle, "sugar_cookie");
+        RegistryHelper.registerItem(sugarSquare, "sugar_cookie_square");
+        RegistryHelper.registerItem(sugarStar, "sugar_cookie_star");
 
-        Cookies.getRegistryHelper().registerItem(chocCircle);
-        Cookies.getRegistryHelper().registerItem(chocSquare);
-        Cookies.getRegistryHelper().registerItem(chocStar);
+        RegistryHelper.registerItem(chocolateCircle, "chocolate_chip_cookie");
+        RegistryHelper.registerItem(chocolateSquare, "chocolate_chip_cookie_square");
+        RegistryHelper.registerItem(chocolateStar, "chocolate_chip_cookie_star");
 
-        Cookies.getRegistryHelper().registerItem(doublechocCircle);
-        Cookies.getRegistryHelper().registerItem(doublechocSquare);
-        Cookies.getRegistryHelper().registerItem(doublechocStar);
-
-        //
-        giftboxPlain.setRegistryName("giftbox");
-        yellowRibbon.setRegistryName("ribbon_yellow");
-
-        //Ingredients
-        sugarPowder.setRegistryName("sugarpowder");
-        gingerPowder.setRegistryName("gingerpowder");
-        ginger.setRegistryName("ginger");
-        chocPowder.setRegistryName("chocolate_powder");
-
-        //Cutters
-        ccCircle.setRegistryName("cookie_cutter_circle");
-        ccGBMan.setRegistryName("cookie_cutter_gbman");
-        ccSquare.setRegistryName("cookie_cutter_square");
-        ccStar.setRegistryName("cookie_cutter_star");
-        ccTree.setRegistryName("cookie_cutter_tree");
-
-        chocChips.setRegistryName("choc_chips");
-        cookiedough.setRegistryName("cookie_dough");
-        plainCircle.setRegistryName("plain_cookie");
-        plainSquare.setRegistryName("plain_cookie_square");
-        plainStar.setRegistryName("plain_cookie_star");
-
-        sugarCircle.setRegistryName("sugar_cookie");
-        sugarSquare.setRegistryName("sugar_cookie_square");
-        sugarStar.setRegistryName("sugar_cookie_star");
-
-        chocCircle.setRegistryName("choc_chip_cookie");
-        chocSquare.setRegistryName("choc_chip_cookie_square");
-        chocStar.setRegistryName("choc_chip_cookie_star");
-
-        doublechocCircle.setRegistryName("double_choc_chip_cookie");;
-        doublechocSquare.setRegistryName("double_choc_chip_cookie_square");
-        doublechocStar.setRegistryName("double_choc_chip_cookie_star");
+        RegistryHelper.registerItem(doublechocolateCircle, "double_chocolate_chip_cookie");
+        RegistryHelper.registerItem(doublechocolateSquare, "double_chocolate_chip_cookie_square");
+        RegistryHelper.registerItem(doublechocolateStar, "double_chocolate_chip_cookie_star");
+        
     }
 }

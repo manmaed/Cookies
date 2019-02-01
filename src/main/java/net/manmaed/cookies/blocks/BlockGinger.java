@@ -25,7 +25,7 @@ public class BlockGinger extends BlockCrops {
 
     public BlockGinger() {
         super();
-        setUnlocalizedName("gingerblock");
+        setTranslationKey("gingerblock");
         /*setDefaultState();*/
     }
 
@@ -53,6 +53,6 @@ public class BlockGinger extends BlockCrops {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return ginger[((Integer)state.getValue(this.getAgeProperty())).intValue()];
+        return ginger[state.getValue(this.getAgeProperty())];
     }
 }

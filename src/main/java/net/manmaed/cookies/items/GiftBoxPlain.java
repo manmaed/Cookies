@@ -8,7 +8,6 @@ import net.manmaed.cookies.items.base.CookieItemBase;
 public class GiftBoxPlain extends CookieItemBase {
 
     public GiftBoxPlain() {
-        super();
-        setUnlocalizedName("giftbox");
+        super("giftbox");
     }
 }

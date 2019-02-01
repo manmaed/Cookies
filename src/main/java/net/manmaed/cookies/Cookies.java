@@ -4,7 +4,6 @@ import net.manmaed.cookies.blocks.CookieBlocks;
 import net.manmaed.cookies.items.CookieItems;
 import net.manmaed.cookies.libs.LogHelper;
 import net.manmaed.cookies.libs.Reference;
-import net.manmaed.cookies.libs.RegistryHelper;
 import net.manmaed.cookies.proxy.CommonProxy;
 import net.manmaed.cookies.tab.CookiesCreativeTab;
 import net.minecraft.creativetab.CreativeTabs;
@@ -35,7 +34,6 @@ public class Cookies {
     @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.PROXY_COMMON)
     public static CommonProxy proxy;
     public static CreativeTabs tabsCookies = new CookiesCreativeTab(CreativeTabs.getNextID());
-    private static RegistryHelper registryHelper;
     private static final String FINGERPRINT = "@FINGERPRINT@";
     private static boolean devenvsign = false;
     private static boolean invalsign = false;
@@ -43,7 +41,6 @@ public class Cookies {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        registryHelper = new RegistryHelper(event);
         CookieItems.load();
         CookieBlocks.load();
     }
@@ -53,7 +50,6 @@ public class Cookies {
     {
         /*WorldGen WorldGen = new WorldGen();
         GameRegistry.registerWorldGenerator(WorldGen, 1);*/
-        /*FMLCommonHandler.instance().bus().register(new CraftingHandler());*/
         /*  NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());*/
         proxy.renderinfo();
 
@@ -68,9 +64,7 @@ public class Cookies {
             LogHelper.warn(Reference.INVALID_FINGERPRINT_MESSAGE);
         }
     }
-    public static RegistryHelper getRegistryHelper() {
-        return registryHelper;
-    }
+
     //FInger Print Stuff
     @Mod.EventHandler
     public void onInvalidFingerprint(FMLFingerprintViolationEvent event)

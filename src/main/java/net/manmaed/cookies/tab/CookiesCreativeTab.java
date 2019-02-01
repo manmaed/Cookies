@@ -16,12 +16,12 @@ public class CookiesCreativeTab extends CreativeTabs {
     }
 
     @Override
-    public ItemStack getTabIconItem() {
-        return new ItemStack(Items.COOKIE);
+    public String getTranslationKey() {
+        return "cookies.creativeTab.name";
     }
 
     @Override
-    public String getTranslatedTabLabel() {
-        return I18n.translateToLocal("cookietab.name");
+    public ItemStack createIcon() {
+        return new ItemStack(Items.COOKIE);
     }
 }

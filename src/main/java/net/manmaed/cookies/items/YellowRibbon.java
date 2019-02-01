@@ -8,7 +8,6 @@ import net.manmaed.cookies.items.base.CookieItemBase;
 public class YellowRibbon extends CookieItemBase {
 
     public YellowRibbon() {
-        super();
-        setUnlocalizedName("ribbion_yellow");
+        super("ribbion_yellow");
     }
 }

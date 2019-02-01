@@ -1,70 +1,35 @@
 package net.manmaed.cookies.libs;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.manmaed.cookies.libs.events.EventRegisterHelper;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.GameData;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import java.util.ArrayList;
+
 
 /**
  * Created by manmaed on 24/02/2017.
  */
 public class RegistryHelper {
 
-    private final ArrayList<Block> blocks = new ArrayList<>();
-    private final ArrayList<Item> items = new ArrayList<>();
-    private final ArrayList<Entity> entitys = new ArrayList<>();
-    private final ArrayList<TileEntity> tileEntities = new ArrayList<>();
+   public static final ArrayList<Block> BLOCKS = new ArrayList<>();
+   public static final ArrayList<Item> ITEMS = new ArrayList<>();
 
-    private final EventRegisterHelper eventRegisterHelper;
-
-    public RegistryHelper(FMLPreInitializationEvent event)
-    {
-        this.eventRegisterHelper = new EventRegisterHelper(event);
-
+    private static <T extends IForgeRegistryEntry<T>> void register(T registryEntry, String name) {
+        GameData.register_impl(registryEntry.setRegistryName(new ResourceLocation(Reference.MOD_ID, name)));
     }
 
-    public ArrayList<Block> getRegisteredBlocks()
-
-    {
-        return blocks;
+    public static <T extends Block> void registerBlock(T block, String name) {
+        register(block, name);
+        BLOCKS.add(block);
+        registerItem(new ItemBlock(block), name);
     }
 
-    public void registerBlock(Block block)
-    {
-        blocks.add(block);
+    public static <T extends Item> void registerItem(T item, String name) {
+        register(item, name);
+        ITEMS.add(item);
     }
-    public ArrayList<Item> getRegisteredItems()
-    {
-        return items;
-    }
-    public void registerItem(Item item)
-    {
-        this.items.add(item);
-    }
-    public ArrayList<Entity> getRegisteredIEntitys()
-    {
-        return entitys;
-    }
-    public void registerEntity(Entity entity)
-    {
-        this.entitys.add(entity);
-    }
-
-    public ArrayList<TileEntity> getRegisteredTileEntitys()
-
-    {
-        return tileEntities;
-    }
-
-    public void registerTileEntity(TileEntity tileEntity)
-    {
-        tileEntities.add(tileEntity);
-    }
-
-
-
 }
