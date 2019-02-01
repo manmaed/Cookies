@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "cookies:blocks/ginger_stage_0"
+  }
+}
