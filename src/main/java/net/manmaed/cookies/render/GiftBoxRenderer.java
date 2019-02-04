@@ -1,8 +1,7 @@
 package net.manmaed.cookies.render;
 
-import net.manmaed.cookies.blocks.tile.TileEntityGiftBox;
+import net.manmaed.cookies.blocks.dud.TileEntityGiftBox;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import net.manmaed.cookies.render.model.ModelGiftBox;
 import net.manmaed.cookies.libs.Textures;

@@ -5,6 +5,7 @@ import net.manmaed.cookies.items.CookieItems;
 import net.manmaed.cookies.libs.LogHelper;
 import net.manmaed.cookies.libs.Reference;
 import net.manmaed.cookies.proxy.CommonProxy;
+import net.manmaed.cookies.proxy.GUIProxy;
 import net.manmaed.cookies.tab.CookiesCreativeTab;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
@@ -13,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 /**
  * Created by manmaed on 13/01/2019.
@@ -50,7 +52,7 @@ public class Cookies {
     {
         /*WorldGen WorldGen = new WorldGen();
         GameRegistry.registerWorldGenerator(WorldGen, 1);*/
-        /*  NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());*/
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIProxy());
         proxy.renderinfo();
 
     }

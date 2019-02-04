@@ -1,6 +1,5 @@
 package net.manmaed.cookies.items;
 
-import net.manmaed.cookies.Cookies;
 import net.manmaed.cookies.items.base.CookieCutterBase;
 import net.manmaed.cookies.items.base.CookieFoodBase;
 import net.manmaed.cookies.items.base.CookieItemBase;
@@ -20,7 +19,7 @@ public class CookieItems {
     public static CookieItemBase sugarPowder;
     public static CookieItemBase gingerPowder;
     public static CookieItemBase ginger;
-    public static CookieItemBase chocolatePowder;
+    public static CookieItemBase chocpowder;
 
     //Cookie Cutters
     public static CookieCutterBase ccCircle;
@@ -30,7 +29,7 @@ public class CookieItems {
     public static CookieCutterBase ccTree;
 
     //Foods
-    public static CookieFoodBase chocolateChips;
+    public static CookieFoodBase chocchips;
     public static CookieFoodBase cookiedough;
     public static CookieFoodBase plainCircle;
     public static CookieFoodBase plainSquare;
@@ -55,34 +54,34 @@ public class CookieItems {
         yellowRibbon = new YellowRibbon();
 
         //Ingredients
-        sugarPowder = new CookieItemBase("sugarPowder");
-        gingerPowder = new CookieItemBase("gingerPower");
+        sugarPowder = new CookieItemBase("sugarpowder");
+        gingerPowder = new CookieItemBase("gingerpowder");
         ginger = new CookieItemBase("ginger");
-        chocolatePowder = new CookieItemBase("chocolatePowder");
+        chocpowder = new CookieItemBase("chocpowder");
 
         //Cookie Cutters
         ccCircle = new CookieCutterBase("circle");
-        ccGBMan = new CookieCutterBase("gbMan");
+        ccGBMan = new CookieCutterBase("gbman");
         ccSquare = new CookieCutterBase("square");
         ccStar = new CookieCutterBase("star");
         ccTree = new CookieCutterBase("tree");
 
         //Foods
-        chocolateChips = new CookieFoodBase("chocolateChips", 1, 0.2F);
-        cookiedough = new CookieFoodBase("cookieDough", 1,0.2F);
-        plainCircle = new CookieFoodBase("plainCircle", 2, 0.4F);
-        plainSquare = new CookieFoodBase("plainSquare", 2, 0.4F);
-        plainStar = new CookieFoodBase("plainStar", 2, 0.4F);
+        chocchips = new CookieFoodBase("chocchips", 1, 0.2F);
+        cookiedough = new CookieFoodBase("cookiedough", 1,0.2F);
+        plainCircle = new CookieFoodBase("plaincircle", 2, 0.4F);
+        plainSquare = new CookieFoodBase("plainsquare", 2, 0.4F);
+        plainStar = new CookieFoodBase("plainstar", 2, 0.4F);
 
-        sugarCircle = new CookieFoodBase("sugarCircle", 2, 0.4F);
-        sugarSquare = new CookieFoodBase("sugarSquare", 2, 0.4F);
-        sugarStar = new CookieFoodBase("sugarStar", 2, 0.4F);
+        sugarCircle = new CookieFoodBase("sugarcircle", 2, 0.4F);
+        sugarSquare = new CookieFoodBase("sugarsquare", 2, 0.4F);
+        sugarStar = new CookieFoodBase("sugarstar", 2, 0.4F);
 
-        chocolateCircle = new CookieFoodBase("chocolateCircle", 2, 0.4F);
-        chocolateSquare = new CookieFoodBase("chocolateSquare", 2, 0.4F);
-        chocolateStar = new CookieFoodBase("chocolateStar", 2, 0.4F);
+        chocolateCircle = new CookieFoodBase("chocolatecircle", 2, 0.4F);
+        chocolateSquare = new CookieFoodBase("chocolatesquare", 2, 0.4F);
+        chocolateStar = new CookieFoodBase("chocolatestar", 2, 0.4F);
 
-        doublechocolateCircle = new CookieFoodBase("doublechocolateCircle", 2, 0.4F);
+        doublechocolateCircle = new CookieFoodBase("doublechocolatecircle", 2, 0.4F);
         doublechocolateSquare = new CookieFoodBase("doublechocolateSquare", 2, 0.4F);
         doublechocolateStar = new CookieFoodBase("doublechocolateCircleStar", 2, 0.4F);
 
@@ -93,7 +92,7 @@ public class CookieItems {
         RegistryHelper.registerItem(sugarPowder, "sugarpowder");
         RegistryHelper.registerItem(gingerPowder, "gingerpowder");
         RegistryHelper.registerItem(ginger, "ginger");
-        RegistryHelper.registerItem(chocolatePowder, "chocolate_powder");
+        RegistryHelper.registerItem(chocpowder, "chocolate_powder");
 
         //Cutters
         RegistryHelper.registerItem(ccCircle, "cookie_cutter_circle");
@@ -103,7 +102,7 @@ public class CookieItems {
         RegistryHelper.registerItem(ccTree, "cookie_cutter_tree");
 
         //Food
-        RegistryHelper.registerItem(chocolateChips, "chocolate_chips");
+        RegistryHelper.registerItem(chocchips, "chocolate_chips");
         RegistryHelper.registerItem(cookiedough, "cookie_dough");
         RegistryHelper.registerItem(plainCircle, "plain_cookie");
         RegistryHelper.registerItem(plainSquare, "plain_cookie_square");

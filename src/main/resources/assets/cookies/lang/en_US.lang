@@ -1,6 +1,23 @@
 # Items
 item.sugarpowder.name=Sugar Powder
 item.gingerpowder.name=Ginger Powder
+item.ginger.name=Ginger
+item.ribbon_yellow.name=Yellow Ribbon
+item.chocchips.name=Choc Chips
+item.chocpowder.name=Chocolate Powder
+
+# Cookie Cutters
+item.cookieCutter.circle.name=Circle Cookie Cutter
+item.cookieCutter.square.name=Square Cookie Cutter
+item.cookieCutter.star.name=Star Cookie Cutter
+item.cookieCutter.gbman.name=GingerBread Man Cookie Cutter
+item.cookieCutter.tree.name=Tree Cookie Cutter
+
+# Cookies
+## Plain
+item.plaincircle.name=Plain Circle Cookie
+item.plainsquare.name=Plain Square Cookie
+item.
 
 # Blocks
 

@@ -1,6 +1,6 @@
 package net.manmaed.cookies.proxy;
 
-import net.manmaed.cookies.blocks.tile.TileEntityGiftBox;
+import net.manmaed.cookies.blocks.dud.TileEntityGiftBox;
 import net.manmaed.cookies.render.GiftBoxRenderer;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 

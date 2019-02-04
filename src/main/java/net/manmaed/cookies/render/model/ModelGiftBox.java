@@ -15,12 +15,12 @@ public class ModelGiftBox extends ModelBase {
     public ModelGiftBox() {
         this.textureWidth = 64;
         this.textureHeight = 64;
-        this.boxbottom = new ModelRenderer(this, 0, 0);
-        this.boxbottom.setRotationPoint(-5.0F, 19.0F, -5.0F);
-        this.boxbottom.addBox(0.0F, 0.0F, 0.0F, 11, 5, 11, 0.0F);
         this.boxtop = new ModelRenderer(this, 0, 16);
-        this.boxtop.setRotationPoint(-6.0F, 16.0F, -6.0F);
+        this.boxtop.setRotationPoint(-6.5F, 16.0F, -6.5F);
         this.boxtop.addBox(0.0F, 0.0F, 0.0F, 13, 3, 13, 0.0F);
+        this.boxbottom = new ModelRenderer(this, 0, 0);
+        this.boxbottom.setRotationPoint(-5.5F, 19.0F, -5.5F);
+        this.boxbottom.addBox(0.0F, 0.0F, 0.0F, 11, 5, 11, 0.0F);
     }
 
     @Override

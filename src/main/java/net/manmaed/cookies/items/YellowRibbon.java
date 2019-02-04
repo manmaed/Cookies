@@ -8,6 +8,6 @@ import net.manmaed.cookies.items.base.CookieItemBase;
 public class YellowRibbon extends CookieItemBase {
 
     public YellowRibbon() {
-        super("ribbion_yellow");
+        super("ribbon_yellow");
     }
 }

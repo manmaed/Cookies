@@ -1,7 +1,6 @@
-package net.manmaed.cookies.blocks.giftbox;
+package net.manmaed.cookies.blocks.dud;
 
 
-import net.manmaed.cookies.blocks.tile.TileEntityGiftBox;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

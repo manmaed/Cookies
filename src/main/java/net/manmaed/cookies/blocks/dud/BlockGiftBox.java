@@ -1,7 +1,6 @@
-package net.manmaed.cookies.blocks;
+package net.manmaed.cookies.blocks.dud;
 
 import net.manmaed.cookies.Cookies;
-import net.manmaed.cookies.blocks.tile.TileEntityGiftBox;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -46,4 +45,6 @@ public class BlockGiftBox extends BlockContainer {
     public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
         return new AxisAlignedBB(1D,1D,1D,1D,1D,1D);
     }
+
+
 }
