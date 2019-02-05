@@ -45,15 +45,16 @@ public class Cookies {
     {
         CookieItems.load();
         CookieBlocks.load();
+        proxy.renderinfo();
     }
 
     @Mod.EventHandler
     public void load(FMLInitializationEvent event)
     {
+        /*proxy.renderinfo();*/
         /*WorldGen WorldGen = new WorldGen();
         GameRegistry.registerWorldGenerator(WorldGen, 1);*/
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIProxy());
-        proxy.renderinfo();
 
     }
 

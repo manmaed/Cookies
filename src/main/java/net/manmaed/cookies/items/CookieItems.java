@@ -4,6 +4,7 @@ import net.manmaed.cookies.items.base.CookieCutterBase;
 import net.manmaed.cookies.items.base.CookieFoodBase;
 import net.manmaed.cookies.items.base.CookieItemBase;
 import net.manmaed.cookies.libs.RegistryHelper;
+import net.minecraft.item.Item;
 
 /**
  * Created by manmaed on 13/01/2019.
@@ -18,7 +19,7 @@ public class CookieItems {
     //Ingredients
     public static CookieItemBase sugarPowder;
     public static CookieItemBase gingerPowder;
-    public static CookieItemBase ginger;
+    public static Item ginger;
     public static CookieItemBase chocpowder;
 
     //Cookie Cutters
@@ -56,7 +57,7 @@ public class CookieItems {
         //Ingredients
         sugarPowder = new CookieItemBase("sugarpowder");
         gingerPowder = new CookieItemBase("gingerpowder");
-        ginger = new CookieItemBase("ginger");
+        ginger = new Ginger();
         chocpowder = new CookieItemBase("chocpowder");
 
         //Cookie Cutters

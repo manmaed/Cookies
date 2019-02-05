@@ -14,6 +14,7 @@ import net.minecraftforge.items.ItemStackHandler;
 public class GiftBoxContainerTileEntity extends TileEntity {
 
     public static final int SIZE = 4;
+
     private ItemStackHandler itemStackHandler = new ItemStackHandler(SIZE) {
         @Override
         protected void onContentsChanged(int slot) {

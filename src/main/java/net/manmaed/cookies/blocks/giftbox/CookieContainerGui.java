@@ -16,7 +16,6 @@ public class CookieContainerGui extends GuiContainer {
 
     public CookieContainerGui(GiftBoxContainerTileEntity tileEntity, CookieContainer inventorySlotsIn) {
         super(inventorySlotsIn);
-
         xSize = WIDTH;
         ySize = HEIGHT;
     }

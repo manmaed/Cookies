@@ -8,6 +8,6 @@ import net.manmaed.cookies.items.base.CookieItemBase;
 public class GiftBoxPlain extends CookieItemBase {
 
     public GiftBoxPlain() {
-        super("giftbox");
+        super("plaingiftbox");
     }
 }

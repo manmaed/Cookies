@@ -23,39 +23,35 @@ public class CookieContainer extends Container {
     }
     private void addPlayerSlots(IInventory playerInventory) {
         // Slots for the main inventory
-        for (int row = 0; row < 3; ++row) {
-            for (int col = 0; col < 9; ++col) {
-                int x = 9 + col * 18;
-                int y = row * 18 + 70;
-                this.addSlotToContainer(new Slot(playerInventory, col + row * 9 + 10, x, y));
+        for (int i1 = 0; i1 < 3; ++i1)
+        {
+            for (int k1 = 0; k1 < 9; ++k1)
+            {
+                this.addSlotToContainer(new Slot(playerInventory, k1 + i1 * 9 + 9, 8 + k1 * 18, 84 + i1 * 18));
             }
         }
 
-        // Slots for the hotbar
-        for (int row = 0; row < 9; ++row) {
-            int x = 9 + row * 18;
-            int y = 58 + 70;
-            this.addSlotToContainer(new Slot(playerInventory, row, x, y));
+        for (int j1 = 0; j1 < 9; ++j1)
+        {
+            this.addSlotToContainer(new Slot(playerInventory, j1, 8 + j1 * 18, 142));
         }
     }
 
     private void addOwnSlots() {
         IItemHandler itemHandler = this.tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-        int x = 9;
-        int y = 6;
+        addSlotToContainer(new SlotItemHandler(itemHandler, 0, 63, 20));
+        addSlotToContainer(new SlotItemHandler(itemHandler, 1, 96, 20));
 
-        // Add our own slots
-        int slotIndex = 0;
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y));
-            slotIndex++;
-            x += 18;
-        }
+        addSlotToContainer(new SlotItemHandler(itemHandler, 2, 63, 53));
+        addSlotToContainer(new SlotItemHandler(itemHandler, 3, 96, 53));
+
+
     }
+
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-        ItemStack itemstack = null;
+        ItemStack itemstack = ItemStack.EMPTY;;
         Slot slot = this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack()) {
@@ -64,21 +60,20 @@ public class CookieContainer extends Container {
 
             if (index < GiftBoxContainerTileEntity.SIZE) {
                 if (!this.mergeItemStack(itemstack1, GiftBoxContainerTileEntity.SIZE, this.inventorySlots.size(), true)) {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             } else if (!this.mergeItemStack(itemstack1, 0, GiftBoxContainerTileEntity.SIZE, false)) {
-                return null;
+                return ItemStack.EMPTY;
             }
-           /* if (!itemstack1.isEmpty()) {
-                slot.putStack(null);
+            if (itemstack1.isEmpty()) {
+                slot.putStack(ItemStack.EMPTY);
             } else {
                 slot.onSlotChanged();
-            }*/
+            }
         }
 
         return itemstack;
     }
-
     @Override
     public boolean canInteractWith(EntityPlayer playerIn) {
         return tileEntity.canInteractWith(playerIn);
