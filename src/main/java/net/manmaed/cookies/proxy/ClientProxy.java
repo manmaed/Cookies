@@ -1,7 +1,7 @@
 package net.manmaed.cookies.proxy;
 
-import net.manmaed.cookies.blocks.giftbox.GiftBoxContainerTileEntity;
 import net.manmaed.cookies.render.GiftBoxRenderer;
+import net.manmaed.cookies.tile.TileEntityGiftBox;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 /**
@@ -10,6 +10,6 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 public class ClientProxy extends CommonProxy {
 
     public void renderinfo() {
-        ClientRegistry.bindTileEntitySpecialRenderer(GiftBoxContainerTileEntity.class, new GiftBoxRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGiftBox.class, new GiftBoxRenderer());
     }
 }

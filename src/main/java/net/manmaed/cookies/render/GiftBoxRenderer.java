@@ -1,15 +1,15 @@
 package net.manmaed.cookies.render;
 
-import net.manmaed.cookies.blocks.giftbox.GiftBoxContainerTileEntity;
 import net.manmaed.cookies.libs.Textures;
 import net.manmaed.cookies.render.model.ModelGiftBox;
+import net.manmaed.cookies.tile.TileEntityGiftBox;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.lwjgl.opengl.GL11;
 
 /**
  * Created by manmaed on 13/01/2019.
  */
-public class GiftBoxRenderer extends TileEntitySpecialRenderer<GiftBoxContainerTileEntity> {
+public class GiftBoxRenderer extends TileEntitySpecialRenderer<TileEntityGiftBox> {
 
     private final ModelGiftBox modelGiftBox;
 
@@ -18,7 +18,7 @@ public class GiftBoxRenderer extends TileEntitySpecialRenderer<GiftBoxContainerT
     }
 
     @Override
-    public void render(GiftBoxContainerTileEntity te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+    public void render(TileEntityGiftBox te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         GL11.glPushMatrix();
         GL11.glTranslatef((float)x + 0.5F, (float)y + 1.5F ,(float)z +0.5F);
         GL11.glRotatef(180, 0F, 0F, 1F);
