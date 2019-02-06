@@ -1,9 +1,17 @@
-package net.manmaed.cookies.blocks.giftbox;
+package net.manmaed.cookies.tile;
 
+import com.sun.istack.internal.Nullable;
+import net.manmaed.cookies.container.CookieContainer;
+import net.manmaed.cookies.libs.Reference;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -11,7 +19,7 @@ import net.minecraftforge.items.ItemStackHandler;
 /**
  * Created by manmaed on 04/02/2019.
  */
-public class GiftBoxContainerTileEntity extends TileEntity {
+public class TileEntityGiftBox extends TileEntity {
 
     public static final int SIZE = 4;
 
@@ -42,18 +50,13 @@ public class GiftBoxContainerTileEntity extends TileEntity {
     }
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return true;
-        }
-        return super.hasCapability(capability, facing);
+    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing side) {
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, side);
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return (T) itemStackHandler;
-        }
-        return super.getCapability(capability, facing);
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T) itemStackHandler : super.getCapability(capability, facing);
     }
+
 }

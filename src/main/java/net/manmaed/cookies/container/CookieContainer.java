@@ -1,5 +1,6 @@
-package net.manmaed.cookies.blocks.giftbox;
+package net.manmaed.cookies.container;
 
+import net.manmaed.cookies.tile.TileEntityGiftBox;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -14,13 +15,14 @@ import net.minecraftforge.items.SlotItemHandler;
  */
 public class CookieContainer extends Container {
 
-    private GiftBoxContainerTileEntity tileEntity;
+    private TileEntityGiftBox tileEntity;
 
-    public CookieContainer(IInventory playerInventory, GiftBoxContainerTileEntity tileEntity) {
+    public CookieContainer(IInventory playerInventory, TileEntityGiftBox tileEntity) {
         this.tileEntity = tileEntity;
         addOwnSlots();
         addPlayerSlots(playerInventory);
     }
+
     private void addPlayerSlots(IInventory playerInventory) {
         // Slots for the main inventory
         for (int i1 = 0; i1 < 3; ++i1)
@@ -58,11 +60,11 @@ public class CookieContainer extends Container {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (index < GiftBoxContainerTileEntity.SIZE) {
-                if (!this.mergeItemStack(itemstack1, GiftBoxContainerTileEntity.SIZE, this.inventorySlots.size(), true)) {
+            if (index < TileEntityGiftBox.SIZE) {
+                if (!this.mergeItemStack(itemstack1, TileEntityGiftBox.SIZE, this.inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 0, GiftBoxContainerTileEntity.SIZE, false)) {
+            } else if (!this.mergeItemStack(itemstack1, 0, TileEntityGiftBox.SIZE, false)) {
                 return ItemStack.EMPTY;
             }
             if (itemstack1.isEmpty()) {
