@@ -14,7 +14,8 @@ public class CookieItems {
     //public static Item itemname;
     //Other Junk
     public static CookieItemBase yellowRibbon;
-    public static CookieItemBase giftboxPlain;
+    public static CookieItemBase handgrinder;
+    /*public static CookieItemBase giftboxPlain;*/
 
     //Ingredients
     public static CookieItemBase sugarPowder;
@@ -51,8 +52,10 @@ public class CookieItems {
     public static void load() {
         //Init'ing
         //itemname = new ItemClass();
-        giftboxPlain = new GiftBoxPlain();
-        yellowRibbon = new YellowRibbon();
+       /* giftboxPlain = new GiftBoxPlain();*/
+        yellowRibbon = new CookieItemBase("ribbon_yellow");
+        handgrinder = new CookieItemBase("hand_grinder");
+
 
         //Ingredients
         sugarPowder = new CookieItemBase("sugarpowder");
@@ -83,11 +86,12 @@ public class CookieItems {
         chocolateStar = new CookieFoodBase("chocolatestar", 2, 0.4F);
 
         doublechocolateCircle = new CookieFoodBase("doublechocolatecircle", 2, 0.4F);
-        doublechocolateSquare = new CookieFoodBase("doublechocolateSquare", 2, 0.4F);
-        doublechocolateStar = new CookieFoodBase("doublechocolateCircleStar", 2, 0.4F);
+        doublechocolateSquare = new CookieFoodBase("doublechocolatesquare", 2, 0.4F);
+        doublechocolateStar = new CookieFoodBase("doublechocolatecirclestar", 2, 0.4F);
 
 
         RegistryHelper.registerItem(yellowRibbon, "ribbon_yellow");
+        RegistryHelper.registerItem(handgrinder, "hand_grinder");
 
         //Ingredients
         RegistryHelper.registerItem(sugarPowder, "sugarpowder");

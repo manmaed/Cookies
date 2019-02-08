@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "gh"
+  ],
+  "key": {
+    "h": { "item": "cookies:hand_grinder" },
+    "g": {
+      "item": "minecaft:dye",
+      "data": 3
+    }
+  },
+  "result": {
+    "item": "cookies:chocpowder",
+    "count": 2
+
+  }
+}
