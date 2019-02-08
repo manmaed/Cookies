@@ -1,6 +1,6 @@
 {
   "variants": {
-    "normal": { "model": "cookies:giftboxblock" },
-    "inventory": { "model": "cookies:giftboxblock" }
+    "normal": { "model": "cookies:giftbox" },
+    "inventory": { "model": "cookies:giftbox" }
   }
 }

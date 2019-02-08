@@ -2,6 +2,7 @@ package net.manmaed.cookies.blocks;
 
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -13,6 +14,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.manmaed.cookies.items.CookieItems;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Created by manmaed on 13/01/2019.
@@ -39,6 +43,11 @@ public class BlockGinger extends BlockCrops {
             }
         }
         return false;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        tooltip.add("This is not the Ginger you are looking for!");
     }
 
     @Override
