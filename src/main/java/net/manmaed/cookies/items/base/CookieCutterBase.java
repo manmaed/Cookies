@@ -6,7 +6,7 @@ package net.manmaed.cookies.items.base;
 public class CookieCutterBase extends CookieItemBase {
 
     public CookieCutterBase(String name){
-        super("cookieCutter." + name);
+        super("cookiecutter." + name);
         setMaxStackSize(1);
     }
 }

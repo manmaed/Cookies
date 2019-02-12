@@ -1,15 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "gh"
+    "w",
+    "s",
+    "m"
   ],
   "key": {
-    "w": { "item": "ninecraft:wheat" },
-    "s": { "item": "ninecraft:sugar" },
-    "m": { "item": "ninecraft:milk_bucket"}
+    "w": { "item": "minecraft:wheat" },
+    "s": { "item": "minecraft:sugar" },
+    "m": { "item": "minecraft:milk_bucket"}
   },
   "result": {
-    "item": "cookies:cookiedough",
+    "item": "cookies:cookie_dough",
     "count": 2
   }
 }

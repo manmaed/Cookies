@@ -17,10 +17,10 @@
       "item": "cookies:cookie_cutter_circle"
     },
     "o": {
-      "items": "minecraft:cobblestone"
-    },
-    "result": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
       "item": "cookies:hand_grinder"
     }
-  }
 }

@@ -45,7 +45,7 @@ public class Cookies {
     {
         CookieItems.load();
         CookieBlocks.load();
-        proxy.renderinfo();
+        //proxy.renderinfo();
     }
 
     @Mod.EventHandler

@@ -5,10 +5,10 @@
   ],
   "key": {
     "h": { "item": "cookies:hand_grinder" },
-    "g": { "item": "cookies:chocchips" }
+    "g": { "item": "cookies:chocolate_chips" }
   },
   "result": {
-    "item": "cookies:chocpowder",
+    "item": "cookies:chocolate_powder",
     "count": 2
 
   }

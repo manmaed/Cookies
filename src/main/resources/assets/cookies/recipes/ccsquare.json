@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+      "pattern": [
+          " i ",
+          "iOi",
+          " i "
+      ],
+      "key": {
+          "i": {
+              "item": "minecraft:gold_ingot"
+          },
+          "O": {
+            "item": "minecraft:planks",
+            "data": 0
+          }
+      },
+  "result": {
+    "item": "cookies:cookie_cutter_square",
+    "count": 1
+  }
+}

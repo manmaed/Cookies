@@ -6,12 +6,12 @@
   "key": {
     "h": { "item": "cookies:hand_grinder" },
     "g": {
-      "item": "minecaft:dye",
+      "item": "minecraft:dye",
       "data": 3
     }
   },
   "result": {
-    "item": "cookies:chocpowder",
+    "item": "cookies:chocolate_chips",
     "count": 2
 
   }
