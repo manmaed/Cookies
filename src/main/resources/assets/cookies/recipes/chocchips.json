@@ -1,15 +1,9 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "gh"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "cookies:hand_grinder" },
+    { "item": "minecraft:dye", "data": 3}
   ],
-  "key": {
-    "h": { "item": "cookies:hand_grinder" },
-    "g": {
-      "item": "minecraft:dye",
-      "data": 3
-    }
-  },
   "result": {
     "item": "cookies:chocolate_chips",
     "count": 2

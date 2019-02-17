@@ -37,6 +37,7 @@ item.doublechocolatestar.name=DoubleChocolate Chip Star Cookie
 
 # Blocks
 tile.giftbox.name=GiftBox
+tile.gingerblock.name=This is not the Ginger you are looking for!
 
 # CreativeTabs
 cookietab.name=Cookie's Tab

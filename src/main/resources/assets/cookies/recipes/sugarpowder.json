@@ -1,12 +1,9 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "gh"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "cookies:hand_grinder" },
+    { "item": "minecraft:sugar" }
   ],
-  "key": {
-    "h": { "item": "cookies:hand_grinder" },
-    "g": { "item": "minecraft:sugar" }
-  },
   "result": {
     "item": "cookies:sugarpowder",
     "count": 2

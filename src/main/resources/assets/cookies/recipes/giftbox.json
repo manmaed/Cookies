@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "wsw",
+    "scs",
+    "wsw"
+  ],
+  "key": {
+    "w": {
+      "item": "minecraft:wool",
+      "data": 14
+    },
+    "s": {
+      "item": "cookies:ribbon_yellow"
+    },
+    "c": {
+      "item": "minecraft:chest"
+    }
+  },
+  "result": {
+    "item": "cookies:giftbox"
+  }
+}

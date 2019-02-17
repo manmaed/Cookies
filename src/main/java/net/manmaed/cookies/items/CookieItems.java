@@ -87,7 +87,7 @@ public class CookieItems {
 
         doublechocolateCircle = new CookieFoodBase("doublechocolatecircle", 2, 0.4F);
         doublechocolateSquare = new CookieFoodBase("doublechocolatesquare", 2, 0.4F);
-        doublechocolateStar = new CookieFoodBase("doublechocolatecirclestar", 2, 0.4F);
+        doublechocolateStar = new CookieFoodBase("doublechocolatestar", 2, 0.4F);
 
 
         RegistryHelper.registerItem(yellowRibbon, "ribbon_yellow");
