@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+      "pattern": [
+          " i ",
+          "iOi",
+          " i "
+      ],
+      "key": {
+          "i": {
+              "item": "minecraft:dye",
+            "data": 4
+          },
+          "O": {
+            "item": "minecraft:planks",
+            "data": 0
+          }
+      },
+  "result": {
+    "item": "cookiesplus:cookie_cutter_tree",
+    "count": 1
+  }
+}

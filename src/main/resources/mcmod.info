@@ -1,13 +1,13 @@
 [
 {
-  "modid": "cookies",
-  "name": "Cookies",
+  "modid": "cookiesplus",
+  "name": "Cookies+",
   "description": "Cookies.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
+  "version": "0.1",
+  "mcversion": "1.12.2",
   "url": "",
   "updateUrl": "",
-  "authorList": ["manmaed, Loneztar"],
+  "authorList": ["manmaed, Loneztar, UnRealDinnerbone"],
   "credits": "",
   "logoFile": "",
   "screenshots": [],

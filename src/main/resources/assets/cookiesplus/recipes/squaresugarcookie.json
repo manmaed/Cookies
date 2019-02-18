@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "cookiesplus:cookie_cutter_square" },
+    { "item": "cookiesplus:cookie_dough" },
+    { "item": "cookiesplus:sugarpowder"}
+  ],
+  "result": {
+    "item": "cookiesplus:sugar_cookie_square"
+
+  }
+}

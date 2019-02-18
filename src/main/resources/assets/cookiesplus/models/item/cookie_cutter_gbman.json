@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "cookiesplus:items/cookie_cutter_gbman"
+  }
+}

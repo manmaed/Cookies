@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "cookiesplus:cookie_cutter_gbman" },
+    { "item": "cookiesplus:cookie_dough" },
+	{ "item": "cookiesplus:gingerpowder"}
+  ],
+  "result": {
+    "item": "cookiesplus:cookiegbman"
+  }
+}

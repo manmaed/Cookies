@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "cookiesplus:hand_grinder" },
+    { "item": "cookiesplus:ginger" }
+  ],
+  "result": {
+    "item": "cookiesplus:gingerpowder",
+    "count": 2
+
+  }
+}

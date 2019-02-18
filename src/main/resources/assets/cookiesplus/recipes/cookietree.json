@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+      "pattern": [
+          " g ",
+          "ybr",
+          "dsc"
+      ],
+      "key": {
+          "g": {
+              "item": "minecraft:dye",
+            "data": 2
+          },
+          "y": {
+            "item": "minecraft:dye",
+            "data": 11
+          },
+        "b": {
+          "item": "minecraft:dye",
+          "data": 4
+        },
+        "r": {
+          "item": "minecraft:dye",
+          "data": 1
+        },
+        "d": {
+          "item": "cookiesplus:cookie_dough"
+        },
+        "s": {
+          "item": "cookiesplus:sugarpowder"
+        },
+        "c": {
+          "item": "cookiesplus:cookie_cutter_tree"
+        }
+      },
+  "result": {
+    "item": "cookiesplus:cookietree",
+    "count": 1
+  }
+}

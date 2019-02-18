@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "cookiesplus:cookie_cutter_star" },
+    { "item": "cookiesplus:cookie_dough" },
+	{ "item": "cookiesplus:chocolate_chips"},
+	{ "item": "cookiesplus:chocolate_powder"}
+  ],
+  "result": {
+    "item": "cookiesplus:double_chocolate_chip_cookie_star"
+
+  }
+}

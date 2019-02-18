@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " s ",
+    "wcw",
+    "ooo"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "w": {
+      "item": "minecraft:planks",
+      "data": 0
+    },
+    "c": {
+      "item": "cookiesplus:cookie_cutter_circle"
+    },
+    "o": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+      "item": "cookiesplus:hand_grinder"
+    }
+}
