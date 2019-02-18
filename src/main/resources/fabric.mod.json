@@ -1,0 +1,10 @@
+{
+  "id": "cookies",
+  "name": "Cookies",
+  "version": "1.0.0",
+  "side": "universal",
+  "initializers": [
+    "net.manmaed.cookies.Cookies",
+    "net.manmaed.cookies.CookiesClient"
+    ]
+}

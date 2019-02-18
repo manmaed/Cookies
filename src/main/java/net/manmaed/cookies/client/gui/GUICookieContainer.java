@@ -1,30 +1,27 @@
 package net.manmaed.cookies.client.gui;
 
+import net.manmaed.cookies.Cookies;
 import net.manmaed.cookies.container.CookieContainer;
-import net.manmaed.cookies.libs.Reference;
-import net.manmaed.cookies.tile.TileEntityGiftBox;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.gui.ContainerScreen;
+import net.minecraft.text.StringTextComponent;
+import net.minecraft.util.Identifier;
 
-/**
- * Created by manmaed on 04/02/2019.
- */
-public class GUICookieContainer extends GuiContainer {
+public class GUICookieContainer extends ContainerScreen<CookieContainer> {
 
     private static final int WIDTH = 176;
     private static final int HEIGHT = 166;
 
-    private static final ResourceLocation background = new ResourceLocation(Reference.MOD_ID, "textures/gui/giftbox.png");
+    private static final Identifier background = new Identifier(Cookies.MOD_ID, "textures/gui/giftbox.png");
 
-    public GUICookieContainer(TileEntityGiftBox tileEntity, CookieContainer inventorySlotsIn) {
-        super(inventorySlotsIn);
-        xSize = WIDTH;
-        ySize = HEIGHT;
+    public GUICookieContainer(CookieContainer cookieContainer) {
+        super(cookieContainer, cookieContainer.playerEntity.inventory, new StringTextComponent("Test"));
+        width = WIDTH;
+        height = HEIGHT;
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        mc.getTextureManager().bindTexture(background);
-        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+    protected void drawBackground(float var1, int var2, int var3) {
+        client.getTextureManager().bindTexture(background);
+        this.drawTexturedRect(left, top, 0, 0, containerWidth, containerHeight);
     }
 }

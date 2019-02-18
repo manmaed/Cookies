@@ -1,52 +1,43 @@
 package net.manmaed.cookies.items;
 
-import net.manmaed.cookies.Cookies;
 import net.manmaed.cookies.blocks.CookieBlocks;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.advancement.criterion.Criterions;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.item.ItemUsageContext;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.IPlantable;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.IWorld;
 
-/**
- * Created by manmaed on 05/02/2019.
- */
-public class Ginger extends Item implements IPlantable {
-    public Ginger() {
-        super();
-        setTranslationKey("ginger");
-        setCreativeTab(Cookies.tabsCookies);
+public class Ginger extends Item  {
+
+    private final BlockState crop;
+
+    public Ginger(Settings settings) {
+        super(settings);
+        this.crop = CookieBlocks.gingerBlockCrop.getDefaultState();
     }
 
-    /**
-     * Called when a Block is right-clicked with this Item
-     */
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        ItemStack itemstack = player.getHeldItem(hand);
-        IBlockState state = worldIn.getBlockState(pos);
-        if(facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemstack) && state.getBlock().canSustainPlant(state, worldIn, pos, EnumFacing.UP ,this) && worldIn.isAirBlock(pos.up())) {
-            worldIn.setBlockState(pos.up(), CookieBlocks.gingerBlock.getDefaultState());
-            itemstack.shrink(1);
-            return EnumActionResult.SUCCESS;
+    public ActionResult useOnBlock(ItemUsageContext itemUsageContext_1) {
+        IWorld iWorld_1 = itemUsageContext_1.getWorld();
+        BlockPos blockPos_1 = itemUsageContext_1.getBlockPos().up();
+        if (itemUsageContext_1.getFacing() == Direction.UP && iWorld_1.isAir(blockPos_1) && this.crop.canPlaceAt(iWorld_1, blockPos_1)) {
+            iWorld_1.setBlockState(blockPos_1, this.crop, 11);
+//            iWorld_1.playSound((PlayerEntity)null, blockPos_1, this.field_17542, SoundCategory.BLOCK, 1.0F, 1.0F);
+            ItemStack itemStack_1 = itemUsageContext_1.getItemStack();
+            PlayerEntity playerEntity_1 = itemUsageContext_1.getPlayer();
+            if (playerEntity_1 instanceof ServerPlayerEntity) {
+                Criterions.PLACED_BLOCK.handle((ServerPlayerEntity)playerEntity_1, blockPos_1, itemStack_1);
+            }
+
+            itemStack_1.subtractAmount(1);
+            return ActionResult.SUCCESS;
+        } else {
+            return ActionResult.FAIL;
         }
-        else return EnumActionResult.FAIL;
-    }
-
-    @Override
-    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
-        return EnumPlantType.Crop;
-    }
-
-    @Override
-    public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
-        return CookieBlocks.gingerBlock.getDefaultState();
     }
 }

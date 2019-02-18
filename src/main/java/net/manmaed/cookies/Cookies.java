@@ -1,85 +1,44 @@
 package net.manmaed.cookies;
 
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.manmaed.cookies.blocks.CookieBlocks;
+import net.manmaed.cookies.container.CookieContainer;
+import net.manmaed.cookies.container.CookieContainers;
 import net.manmaed.cookies.items.CookieItems;
-import net.manmaed.cookies.libs.LogHelper;
-import net.manmaed.cookies.libs.Reference;
-import net.manmaed.cookies.proxy.CommonProxy;
-import net.manmaed.cookies.proxy.GUIProxy;
-import net.manmaed.cookies.tab.CookiesCreativeTab;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-
-/**
- * Created by manmaed on 13/01/2019.
- */
+import net.manmaed.cookies.tile.BlockEntityGiftBox;
+import net.manmaed.cookies.tile.CookieBlockEntities;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 
 
-@Mod(
-        modid = Reference.MOD_ID,
-        name = Reference.MOD_NAME,
-        version = Reference.VERSION,
-        acceptedMinecraftVersions = Reference.MC_VERSION,
-        certificateFingerprint = "null"
-)
-public class Cookies {
+public class Cookies implements ModInitializer {
 
-    @Mod.Instance(Reference.MOD_ID)
-    public static Cookies instance;
+    public static ItemGroup itemGroup = FabricItemGroupBuilder.build(new Identifier(Cookies.MOD_ID, Cookies.MOD_ID), () -> new ItemStack(CookieItems.ccGBMan));
+    public static final String MOD_ID = "cookies";
+    public static final Identifier CON = new Identifier(MOD_ID, "con");
 
-    @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.PROXY_COMMON)
-    public static CommonProxy proxy;
-    public static CreativeTabs tabsCookies = new CookiesCreativeTab(CreativeTabs.getNextID());
-    private static final String FINGERPRINT = "@FINGERPRINT@";
-    private static boolean devenvsign = false;
-    private static boolean invalsign = false;
-
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
-        CookieItems.load();
+    @Override
+    public void onInitialize() {
+        System.out.println("Loading Cookies!");
         CookieBlocks.load();
-        //proxy.renderinfo();
-    }
+        CookieItems.load();
+        CookieContainers.init();
+        CookieBlockEntities.init();
 
-    @Mod.EventHandler
-    public void load(FMLInitializationEvent event)
-    {
-        /*proxy.renderinfo();*/
-        /*WorldGen WorldGen = new WorldGen();
-        GameRegistry.registerWorldGenerator(WorldGen, 1);*/
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIProxy());
-
-    }
-
-    @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        if (devenvsign) {
-            LogHelper.info(Reference.NO_FINGERPRINT_MESSAGE);
+        ContainerProviderRegistry.INSTANCE.registerFactory(CON, (syncId, identifier, player, buf) -> {
+                    BlockPos blockPos = buf.readBlockPos();
+                    BlockEntity blockEntity = player.world.getBlockEntity(blockPos);
+                    if(blockEntity instanceof BlockEntityGiftBox) {
+                        return new CookieContainer(syncId, player, ((BlockEntityGiftBox) blockEntity));
+                    }else {
+                        return null;
+                    }
         }
-        if (invalsign) {
-            LogHelper.warn(Reference.INVALID_FINGERPRINT_MESSAGE);
-        }
+        );
     }
-
-    //FInger Print Stuff
-    @Mod.EventHandler
-    public void onInvalidFingerprint(FMLFingerprintViolationEvent event)
-    {
-        if(event.isDirectory()){
-            devenvsign = true;
-            //iChun.setdev();
-        }
-        if(!event.isDirectory()) {
-            invalsign = true;
-        }
-
-    }
-
 }

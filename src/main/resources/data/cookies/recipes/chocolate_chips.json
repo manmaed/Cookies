@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "gh"
+  ],
+  "key": {
+    "h": { "item": "cookies:hand_grinder" },
+    "g": {
+      "item": "minecraft:cocoa_beans"
+    }
+  },
+  "result": {
+    "item": "cookies:chocolate_chips",
+    "count": 2
+
+  }
+}

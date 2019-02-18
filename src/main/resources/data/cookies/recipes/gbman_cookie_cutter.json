@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+      "pattern": [
+          " i ",
+          "iOi",
+          " i "
+      ],
+      "key": {
+          "i": {
+              "item": "minecraft:emerald"
+          },
+          "O": {
+            "tag": "minecraft:planks"
+          }
+      },
+  "result": {
+    "item": "cookies:gbman_cookie_cutter",
+    "count": 1
+  }
+}

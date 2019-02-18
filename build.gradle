@@ -1,48 +1,41 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url = "https://files.minecraftforge.net/maven" }
+        maven {
+            name = 'Fabric'
+            url = 'http://maven.modmuss50.me/'
+        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath "net.fabricmc:fabric-loom:0.2.0-SNAPSHOT"
     }
 }
-apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "2.0.0"
-group = "net.manmaed.cookies"
-archivesBaseName = "cookies"
+apply plugin: net.fabricmc.loom.LoomGradlePlugin
 
-sourceCompatibility = targetCompatibility = '1.8'
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
-}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+def ENV = System.getenv()
+def buildVersion = ENV.BUILD_NUMBER ? "${mod_verison}.${ENV.BUILD_NUMBER}" : "${mod_verison}-beta"
+version = buildVersion + "-universal"
+
+archivesBaseName = "${mod_name}"
 
 minecraft {
-    version = "1.12.2-14.23.5.2808"
-    runDir = "run"
-    mappings = "snapshot_20180814"
+
 }
 
 dependencies {
-
-}
-
-processResources {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-        
-    // copy everything else except the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+    if (project.hasProperty("devWorkspace")) {
+        minecraft "com.mojang:minecraft:" + project.property("minecraftVersion")
+        mappings "net.fabricmc:yarn:" + project.property("mappingsVersion")
+        modCompile "net.fabricmc:fabric-loader:" + project.property("loaderVersion")
+        modCompile "net.fabricmc:fabric:" + project.property("fabricVversion")
+    } else {
+        minecraft "com.mojang:minecraft:" + "${minecraft_version}"
+        mappings "net.fabricmc:yarn:" + "${mappings_version}"
+        modCompile "net.fabricmc:fabric-loader:" + "${loader_version}"
+        modCompile "net.fabricmc:fabric:" + "${fabric_version}"
     }
 }

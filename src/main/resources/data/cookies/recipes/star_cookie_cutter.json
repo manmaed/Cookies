@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+      "pattern": [
+          " i ",
+          "iOi",
+          " i "
+      ],
+      "key": {
+          "i": {
+              "item": "minecraft:diamond"
+          },
+          "O": {
+            "tag": "minecraft:planks"
+
+          }
+      },
+  "result": {
+    "item": "cookies:star_cookie_cutter",
+    "count": 1
+  }
+}

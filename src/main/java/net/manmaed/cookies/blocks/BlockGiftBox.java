@@ -1,125 +1,99 @@
 package net.manmaed.cookies.blocks;
 
+import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.manmaed.cookies.Cookies;
-import net.manmaed.cookies.tile.TileEntityGiftBox;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.manmaed.cookies.tile.BlockEntityGiftBox;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.container.NameableContainerProvider;
+import net.minecraft.entity.VerticalEntityPosition;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.sortme.ItemScatterer;
+import net.minecraft.state.StateFactory;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 
-import javax.annotation.Nullable;
-import java.util.stream.IntStream;
+public class BlockGiftBox extends BlockWithEntity implements Waterloggable {
 
-/**
- * Created by manmaed on 04/02/2019.
- */
-//extends BlockContainer implements ITileEntityProvider
-@SuppressWarnings("deprecation")
-public class BlockGiftBox extends Block {
+    private static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+    private static final VoxelShape BOUNDING_BOX = VoxelShapes.union(Block.createCuboidShape(2.5D, 0.0D, 2.5D, 13.5D, 5.0D, 13.5D), Block.createCuboidShape(1.5D, 5.0D, 1.5D, 14.5D, 8.0D, 14.5D));
 
-    public static final  int GUI_ID = 1;
-    private static final AxisAlignedBB BOX = new AxisAlignedBB(0D, 0D, 0D, 1.0D, 0.5D, 1.0D);
-
-    public BlockGiftBox() {
-        super(Material.WOOD);
-        setTranslationKey("giftbox");
-        setHarvestLevel("pickaxe", 0);
-        setHardness(3.0F);
-        setResistance(5.0F);
-        setCreativeTab(Cookies.tabsCookies);
+    public BlockGiftBox(Block.Settings settings) {
+        super(settings);
+        this.setDefaultState(this.stateFactory.getDefaultState().with(WATERLOGGED, false));
 
     }
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
+
+    public VoxelShape getOutlineShape(BlockState blockState_1, BlockView blockView_1, BlockPos blockPos_1, VerticalEntityPosition verticalEntityPosition_1) {
+        return BOUNDING_BOX;
     }
 
     @Override
-    public boolean hasTileEntity() {
-        return true;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public boolean hasCustomBreakingProgress(IBlockState state) {
-        return true;
-    }
-
-
-    @Nullable
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-        return BOX;
-    }
-
-    @Override
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
-        return BOX;
-    }
-
-
-    @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        if (tileentity instanceof TileEntityGiftBox) {
-            if(tileentity.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)) {
-                IItemHandler itemHandler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-                IntStream.range(0, itemHandler.getSlots()).forEach(slotCount -> InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemHandler.getStackInSlot(slotCount)));
-                worldIn.updateComparatorOutputLevel(pos, this);
-            }
+    public BlockState getStateForNeighborUpdate(BlockState blockState, Direction direction_1, BlockState blockState_2, IWorld iWorld_1, BlockPos blockPos_1, BlockPos blockPos_2) {
+        if (blockState.get(WATERLOGGED)) {
+            iWorld_1.getFluidTickScheduler().schedule(blockPos_1, Fluids.WATER, Fluids.WATER.getTickRate(iWorld_1));
         }
-        super.breakBlock(worldIn, pos, state);
+        return super.getStateForNeighborUpdate(blockState, direction_1, blockState_2, iWorld_1, blockPos_1, blockPos_2);
     }
 
-
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return BOX;
-    }
-    @Override
-    public boolean hasTileEntity(IBlockState state) {
-        return true;
+    public FluidState getFluidState(BlockState blockState) {
+       return blockState.get(WATERLOGGED) ? Fluids.WATER.getState(false) : super.getFluidState(blockState);
     }
 
-    @Nullable
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
-        return new TileEntityGiftBox();
-    }
-
-    /*@Nullable
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityGiftBox();
-    }*/
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (!worldIn.isRemote) {
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if (tileEntity instanceof TileEntityGiftBox) {
-                playerIn.openGui(Cookies.instance, GUI_ID, worldIn, pos.getX(), pos.getY(), pos.getZ());
-                return true;
-            }
-            return false;
+    public boolean activate(BlockState blockState_1, World world_1, BlockPos blockPos_1, PlayerEntity playerEntity_1, Hand hand_1, BlockHitResult blockHitResult_1) {
+        if (world_1.isClient) {
+            return true;
+        } else {
+            if(world_1.getBlockEntity(blockPos_1) instanceof BlockEntityGiftBox)
+            ContainerProviderRegistry.INSTANCE.openContainer(Cookies.CON, playerEntity_1, buf -> buf.writeBlockPos(blockPos_1));
+            return true;
         }
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState blockState) {
+        return BlockRenderType.MODEL;
+    }
+
+    @Override
+    protected void appendProperties(StateFactory.Builder<Block, BlockState> stateBuilder) {
+        stateBuilder.with(WATERLOGGED);
+    }
+
+    @Override
+    public boolean hasDynamicBounds() {
         return true;
+    }
+
+    @Override
+    public BlockEntity createBlockEntity(BlockView var1) {
+        return new BlockEntityGiftBox();
+    }
+
+    @Override
+    public void onBlockRemoved(BlockState blockState_1, World world_1, BlockPos blockPos_1, BlockState blockState_2, boolean boolean_1) {
+        if (blockState_1.getBlock() != blockState_2.getBlock()) {
+            BlockEntity blockEntity_1 = world_1.getBlockEntity(blockPos_1);
+            if (blockEntity_1 instanceof Inventory) {
+                ItemScatterer.spawn(world_1, blockPos_1, (Inventory)blockEntity_1);
+                world_1.updateHorizontalAdjacent(blockPos_1, this);
+            }
+
+            super.onBlockRemoved(blockState_1, world_1, blockPos_1, blockState_2, boolean_1);
+        }
     }
 }

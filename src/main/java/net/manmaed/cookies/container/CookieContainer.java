@@ -1,83 +1,63 @@
 package net.manmaed.cookies.container;
 
-import net.manmaed.cookies.tile.TileEntityGiftBox;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
+import net.minecraft.container.Container;
+import net.minecraft.container.Slot;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
 
-/**
- * Created by manmaed on 04/02/2019.
- */
+import java.util.stream.IntStream;
+
 public class CookieContainer extends Container {
 
-    private TileEntityGiftBox tileEntity;
+    private final Inventory inventory;
+    public final PlayerEntity playerEntity;
 
-    public CookieContainer(IInventory playerInventory, TileEntityGiftBox tileEntity) {
-        this.tileEntity = tileEntity;
-        addOwnSlots();
-        addPlayerSlots(playerInventory);
-    }
+    public CookieContainer(int syncId, PlayerEntity playerEntity, Inventory inventory) {
+        super(null, syncId);
+        this.inventory = inventory;
+        this.playerEntity = playerEntity;
+        PlayerInventory playerInventory = playerEntity.inventory;
+        IntStream.range(0, 9).mapToObj(j -> new Slot(playerInventory, j + 9, 8 + j * 18, 84)).forEach(this::addSlot);
+        IntStream.range(0, 9).mapToObj(j -> new Slot(playerInventory, j + 9 + 9, 8 + j * 18, 84 + 18)).forEach(this::addSlot);
+        IntStream.range(0, 9).mapToObj(j -> new Slot(playerInventory, j + 2 * 9 + 9, 8 + j * 18, 84 + 2 * 18)).forEach(this::addSlot);
+        IntStream.range(0, 9).mapToObj(j -> new Slot(playerInventory, j, 8 + j * 18, 142)).forEach(this::addSlot);
 
-    private void addPlayerSlots(IInventory playerInventory) {
-        // Slots for the main inventory
-        for (int i1 = 0; i1 < 3; ++i1)
-        {
-            for (int k1 = 0; k1 < 9; ++k1)
-            {
-                this.addSlotToContainer(new Slot(playerInventory, k1 + i1 * 9 + 9, 8 + k1 * 18, 84 + i1 * 18));
-            }
-        }
-
-        for (int j1 = 0; j1 < 9; ++j1)
-        {
-            this.addSlotToContainer(new Slot(playerInventory, j1, 8 + j1 * 18, 142));
-        }
-    }
-
-    private void addOwnSlots() {
-        IItemHandler itemHandler = this.tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-        addSlotToContainer(new SlotItemHandler(itemHandler, 0, 63, 20));
-        addSlotToContainer(new SlotItemHandler(itemHandler, 1, 96, 20));
-
-        addSlotToContainer(new SlotItemHandler(itemHandler, 2, 63, 53));
-        addSlotToContainer(new SlotItemHandler(itemHandler, 3, 96, 53));
-
+        this.addSlot(new Slot(inventory, 0, 63, 20));
+        this.addSlot(new Slot(inventory, 1, 96, 20));
+        this.addSlot(new Slot(inventory, 2, 63, 53));
+        this.addSlot(new Slot(inventory, 3, 96, 53));
 
     }
-
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-        ItemStack itemstack = ItemStack.EMPTY;;
-        Slot slot = this.inventorySlots.get(index);
-
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
-
-            if (index < TileEntityGiftBox.SIZE) {
-                if (!this.mergeItemStack(itemstack1, TileEntityGiftBox.SIZE, this.inventorySlots.size(), true)) {
+    public ItemStack transferSlot(PlayerEntity playerEntity_1, int int_1) {
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot_1 = this.slotList.get(int_1);
+        if (slot_1 != null && slot_1.hasStack()) {
+            ItemStack itemStack_2 = slot_1.getStack();
+            if (int_1 < 4) {
+                if (!this.insertItem(itemStack_2, 4, this.slotList.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 0, TileEntityGiftBox.SIZE, false)) {
+            } else if (!this.insertItem(itemStack_2, 0, 4, false)) {
                 return ItemStack.EMPTY;
             }
-            if (itemstack1.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+
+            if (itemStack_2.isEmpty()) {
+                slot_1.setStack(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot_1.markDirty();
             }
         }
 
-        return itemstack;
+        return itemStack;
     }
+
+
     @Override
-    public boolean canInteractWith(EntityPlayer playerIn) {
-        return tileEntity.canInteractWith(playerIn);
+    public boolean canUse(PlayerEntity var1) {
+        return true;
     }
 }

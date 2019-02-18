@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+      "pattern": [
+          " g ",
+          "ybr",
+          "dsc"
+      ],
+      "key": {
+          "g": {
+              "item": "minecraft:green_dye"
+          },
+          "y": {
+            "item": "minecraft:yellow_dye"
+          },
+        "b": {
+          "item": "minecraft:blue_dye"
+        },
+        "r": {
+          "item" : "minecraft:red_dye"
+        },
+        "d": {
+          "item": "cookiesplus:cookie_dough"
+        },
+        "s": {
+          "item": "cookiesplus:sugar_powder"
+        },
+        "c": {
+          "item": "cookies:tree_cookie_cutter"
+        }
+      },
+  "result": {
+    "item": "cookies:tree_christmas_cookie",
+    "count": 1
+  }
+}

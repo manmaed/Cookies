@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "cookies:items/chocolate_chips"
+    "layer0": "cookies:items/tree_christmas_cookie"
   }
 }
