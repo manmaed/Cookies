@@ -37,6 +37,8 @@ public class CookieItems {
 
     public static void load() {
 
+
+        System.out.println("Cooking " + CookieTypes.Types.values().length * CookieTypes.Shapes.values().length + " Cookies!");
         for (CookieTypes.Shapes shape : CookieTypes.Shapes.values()) {
             registerItem(shape.name().toLowerCase() + "_cookie_cutter");
             for (CookieTypes.Types type : CookieTypes.Types.values()) {

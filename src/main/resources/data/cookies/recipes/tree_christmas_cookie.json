@@ -19,10 +19,10 @@
           "item" : "minecraft:red_dye"
         },
         "d": {
-          "item": "cookiesplus:cookie_dough"
+          "item": "cookies:cookie_dough"
         },
         "s": {
-          "item": "cookiesplus:sugar_powder"
+          "item": "cookies:sugar_powder"
         },
         "c": {
           "item": "cookies:tree_cookie_cutter"
