@@ -1,39 +1,27 @@
 package net.manmaed.cookies.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
-import net.minecraft.item.Item;
+import net.minecraft.entity.VerticalEntityPosition;
 import net.minecraft.item.ItemProvider;
-import net.manmaed.cookies.items.CookieItems;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 
-public class BlockGingerCrop extends CropBlock {
+public class GingerBlockCrop extends CropBlock {
 
-    public BlockGingerCrop(Block.Settings settings) {
+    private static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D)};
+    public GingerBlockCrop(Block.Settings settings) {
         super(settings);
     }
 
-
-//    @Override
-//    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-//        tooltip.add("This is not the Ginger you are looking for!");
-//    }
-//
-//    @Override
-//    protected Item getSeed() {
-//        return CookieItems.ginger;
-//    }
-
     @Override
     protected ItemProvider getCropItem() {
-        return () -> CookieItems.ginger;
+        return () -> CookieBlocks.ginger;
     }
 
-    protected Item getCrop() {
-        return CookieItems.ginger;
+    public VoxelShape getOutlineShape(BlockState blockState_1, BlockView blockView_1, BlockPos blockPos_1, VerticalEntityPosition verticalEntityPosition_1) {
+        return AGE_TO_SHAPE[blockState_1.get(this.getAgeProperty())];
     }
-
-//    @Override
-//    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-//        return ginger[state.getValue(this.getAgeProperty())];
-//    }
 }
