@@ -1,4 +1,4 @@
-package net.manmaed.cookiesplus.client;
+package net.manmaed.cookiesplus.worldgen;
 
 import net.manmaed.cookiesplus.blocks.BlockGinger;
 import net.manmaed.cookiesplus.blocks.CookieBlocks;
@@ -17,10 +17,10 @@ import java.util.Random;
  */
 
 
-public class WorldGen implements IWorldGenerator
+public class WorldGenCrop implements IWorldGenerator
 {
 
-    public static WorldGen INSTANCE = new WorldGen();
+    public static WorldGenCrop INSTANCE = new WorldGenCrop();
     /*private WorldGenMinable ginger;*/
 
 

@@ -1,7 +1,7 @@
 package net.manmaed.cookiesplus;
 
 import net.manmaed.cookiesplus.blocks.CookieBlocks;
-import net.manmaed.cookiesplus.client.WorldGen;
+import net.manmaed.cookiesplus.worldgen.WorldGenCrop;
 import net.manmaed.cookiesplus.items.CookieItems;
 import net.manmaed.cookiesplus.libs.LogHelper;
 import net.manmaed.cookiesplus.libs.Reference;
@@ -52,7 +52,7 @@ public class Cookies {
     public void load(FMLInitializationEvent event)
     {
         /*proxy.renderinfo();*/
-        GameRegistry.registerWorldGenerator(WorldGen.INSTANCE, 5);
+        GameRegistry.registerWorldGenerator(WorldGenCrop.INSTANCE, 5);
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIProxy());
 
     }
