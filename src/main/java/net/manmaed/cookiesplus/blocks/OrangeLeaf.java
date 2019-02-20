@@ -43,14 +43,14 @@ public class OrangeLeaf extends BlockLeaves {
         LogHelper.info("Bound 10: " + worldIn.rand.nextInt(5));*/
         if (worldIn.rand.nextInt(chance) == 0 || worldIn.rand.nextInt(5) == 0 )
         {
-            spawnAsEntity(worldIn, pos, new ItemStack(CookieItems.orange));
+            spawnAsEntity(worldIn, pos, new ItemStack(CookieItems.orange, 1));
         }
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(CookieBlocks.orangesapling);
+       return Item.getItemFromBlock(CookieBlocks.orangesapling);
     }
 
     @Override

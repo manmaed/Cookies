@@ -107,6 +107,7 @@ public class CookieItems {
         RegistryHelper.registerItem(gingerPowder, "gingerpowder");
         RegistryHelper.registerItem(ginger, "ginger");
         RegistryHelper.registerItem(chocpowder, "chocolate_powder");
+        RegistryHelper.registerItem(orange, "orange");
 
         //Cutters
         RegistryHelper.registerItem(ccCircle, "cookie_cutter_circle");
