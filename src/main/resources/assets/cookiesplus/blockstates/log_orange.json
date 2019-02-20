@@ -1,6 +1,9 @@
 {
   "variants": {
-    "normal": { "model": "cookiesplus:log_orange" },
-    "inventory": { "model": "cookiesplus:log_orange" }
+    "inventory": { "model": "cookiesplus:log_orange" },
+    "axis=y":  { "model": "cookiesplus:log_orange" },
+    "axis=z":   { "model": "cookiesplus:log_orange", "x": 90 },
+    "axis=x":   { "model": "cookiesplus:log_orange", "x": 90, "y": 90 },
+    "axis=none": { "model": "cookiesplus:log_orange" }
   }
 }

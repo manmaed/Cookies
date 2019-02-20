@@ -21,6 +21,7 @@ public class CookieItems {
     public static CookieItemBase gingerPowder;
     public static Item ginger;
     public static CookieItemBase chocpowder;
+    public static CookieFoodBase orange;
 
     //Cookie Cutters
     public static CookieCutterBase ccCircle;
@@ -65,6 +66,8 @@ public class CookieItems {
         gingerPowder = new CookieItemBase("gingerpowder");
         ginger = new Ginger();
         chocpowder = new CookieItemBase("chocpowder");
+        orange = new CookieFoodBase("orange",4, 0.2F);
+
 
         //Cookie Cutters
         ccCircle = new CookieCutterBase("circle");

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "normal": { "model": "cookiesplus:sapling_orange" },
+    "inventory": { "model": "cookiesplus:sapling_orange"},
+    "stage=1": { "model": "cookiesplus:sapling_orange" },
+    "stage=0": { "model": "cookiesplus:sapling_orange" }
+  }
+}
