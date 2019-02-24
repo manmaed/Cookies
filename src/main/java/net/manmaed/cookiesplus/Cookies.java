@@ -1,12 +1,12 @@
 package net.manmaed.cookiesplus;
 
 import net.manmaed.cookiesplus.blocks.CookieBlocks;
-import net.manmaed.cookiesplus.worldgen.WorldGenCrop;
 import net.manmaed.cookiesplus.items.CookieItems;
 import net.manmaed.cookiesplus.libs.LogHelper;
 import net.manmaed.cookiesplus.libs.Reference;
 import net.manmaed.cookiesplus.proxy.GUIProxy;
 import net.manmaed.cookiesplus.tab.CookiesCreativeTab;
+import net.manmaed.cookiesplus.worldgen.WorldGenCrop;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
@@ -53,6 +53,7 @@ public class Cookies {
     {
         /*proxy.renderinfo();*/
         GameRegistry.registerWorldGenerator(WorldGenCrop.INSTANCE, 5);
+        //GameRegistry.registerWorldGenerator(WorldGenTree.INSTANCE, 5);
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIProxy());
 
     }

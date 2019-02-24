@@ -1,6 +1,7 @@
 package net.manmaed.cookiesplus.worldgen;
 
 import net.manmaed.cookiesplus.blocks.CookieBlocks;
+import net.manmaed.cookiesplus.libs.LogHelper;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
@@ -17,6 +18,8 @@ import java.util.Random;
  * Created by manmaed on 20/02/2019.
  */
 public class WorldGenTree extends WorldGenAbstractTree {
+
+    public static WorldGenTree INSTANCE = new WorldGenTree(true);
 
     private IBlockState blockStateWood = CookieBlocks.orangelog.getDefaultState();
     private IBlockState blockStateLeaves = CookieBlocks.orangeleaf.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
@@ -46,6 +49,7 @@ public class WorldGenTree extends WorldGenAbstractTree {
                 if (state.getBlock().canSustainPlant(state, worldIn, position.down(), EnumFacing.UP, (IPlantable) Blocks.SAPLING) && position.getY() < worldIn.getHeight() - minHeight - 1)
                 {
                     state.getBlock().onPlantGrow(state, worldIn, position.down(), position);
+                    LogHelper.info("Tree: " + position);
                     generateLeaves(worldIn, position, minHeight, rand);
                     generateTrunk(worldIn, position, minHeight);
                     return true;

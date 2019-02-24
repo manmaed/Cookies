@@ -7,6 +7,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Created by manmaed on 13/01/2019.
@@ -37,6 +38,11 @@ public class CookieBlocks {
         RegistryHelper.registerBlock(orangeplank, "plank_orange");
         RegistryHelper.registerBlock(orangeleaf, "leaves_orange");
         RegistryHelper.registerBlock(orangesapling, "sapling_orange");
+
+        OreDictionary.registerOre("logWood", orangelog);
+        OreDictionary.registerOre("plankWood", orangeplank);
+        OreDictionary.registerOre("treeLeaves", orangeleaf);
+        OreDictionary.registerOre("sapling_orange", orangesapling);
 
         GameRegistry.registerTileEntity(TileEntityGiftBox.class, new ResourceLocation(Reference.MOD_ID, "giftbox"));
 

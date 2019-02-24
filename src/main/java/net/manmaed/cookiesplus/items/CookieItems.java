@@ -5,6 +5,7 @@ import net.manmaed.cookiesplus.items.base.CookieFoodBase;
 import net.manmaed.cookiesplus.items.base.CookieItemBase;
 import net.manmaed.cookiesplus.libs.RegistryHelper;
 import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Created by manmaed on 13/01/2019.
@@ -22,6 +23,7 @@ public class CookieItems {
     public static Item ginger;
     public static CookieItemBase chocpowder;
     public static CookieFoodBase orange;
+    public static CookieItemBase orangepowder;
 
     //Cookie Cutters
     public static CookieCutterBase ccCircle;
@@ -67,6 +69,7 @@ public class CookieItems {
         ginger = new Ginger();
         chocpowder = new CookieItemBase("chocpowder");
         orange = new CookieFoodBase("orange",4, 0.2F);
+        orangepowder = new CookieItemBase("orangepowder");
 
 
         //Cookie Cutters
@@ -108,6 +111,7 @@ public class CookieItems {
         RegistryHelper.registerItem(ginger, "ginger");
         RegistryHelper.registerItem(chocpowder, "chocolate_powder");
         RegistryHelper.registerItem(orange, "orange");
+        RegistryHelper.registerItem(orangepowder, "orangepowder");
 
         //Cutters
         RegistryHelper.registerItem(ccCircle, "cookie_cutter_circle");
@@ -137,6 +141,9 @@ public class CookieItems {
 
         RegistryHelper.registerItem(cookietree, "cookietree");
         RegistryHelper.registerItem(cookiegbman, "cookiegbman");
+
+        OreDictionary.registerOre("orange", orange);
+        OreDictionary.registerOre("ginger", ginger);
 
         //MinecraftForge.addGrassSeed(new ItemStack(ginger), 10);
     }
