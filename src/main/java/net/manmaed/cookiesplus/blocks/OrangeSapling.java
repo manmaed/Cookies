@@ -1,7 +1,7 @@
 package net.manmaed.cookiesplus.blocks;
 
 import net.manmaed.cookiesplus.Cookies;
-import net.manmaed.cookiesplus.worldgen.WorldGenTree;
+import net.manmaed.cookiesplus.worldgen.GenTree;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -33,7 +33,7 @@ public class OrangeSapling extends BlockBush implements IGrowable {
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-        WorldGenerator worldgenerator = new WorldGenTree(true);
+        WorldGenerator worldgenerator = new GenTree(true);
 
         worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
 

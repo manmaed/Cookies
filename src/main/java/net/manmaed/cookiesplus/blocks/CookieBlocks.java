@@ -5,6 +5,7 @@ import net.manmaed.cookiesplus.libs.RegistryHelper;
 import net.manmaed.cookiesplus.tile.TileEntityGiftBox;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -29,6 +30,11 @@ public class CookieBlocks {
         orangeplank = new CBB("plank_orange", Material.WOOD,3F,5F, "axe", 0, SoundType.WOOD);
         orangelog = new OrangeLog("log_orange");
         orangesapling = new OrangeSapling("sapling_orange");
+
+        Blocks.FIRE.setFireInfo(orangeleaf, 8, 30);
+        Blocks.FIRE.setFireInfo(orangeplank, 3, 10);
+        Blocks.FIRE.setFireInfo(orangelog, 6, 20);
+
 
         RegistryHelper.registerBlock(gingerBlock, "gingerblock");
         RegistryHelper.registerBlock(giftBox, "giftbox");

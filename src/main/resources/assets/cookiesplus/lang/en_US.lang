@@ -7,6 +7,8 @@ item.chocchips.name=Choc Chips
 item.chocpowder.name=Chocolate Powder
 item.cookiedough.name=Cookie Dough
 item.hand_grinder.name=Hand Grinder
+item.orangepowder.name=Orange Powder
+
 # Cookie Cutters
 item.cookiecutter.circle.name=Circle Cookie Cutter
 item.cookiecutter.square.name=Square Cookie Cutter
@@ -35,6 +37,14 @@ item.chocolatestar.name=Chocolate Chip Star Cookie
 item.doublechocolatecircle.name=Double Chocolate Chip Circle Cookie
 item.doublechocolatesquare.name=Double Chocolate Chip Square Cookie
 item.doublechocolatestar.name=DoubleChocolate Chip Star Cookie
+
+
+## Tree Stuff
+tile.sapling_orange.name=Orange Sapling
+tile.log_orange.name=Orange Wood
+tile.leaves_orange.name=Orange Leaves
+tile.plank_orange.nameOrange Wood Plank
+item.orange.name=Orange
 
 # Blocks
 tile.giftbox.name=GiftBox
