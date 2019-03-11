@@ -30,6 +30,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
         certificateFingerprint = "@FINGERPRINT@"
 )
 public class Cookies {
+    /*
+    * TODO:
+    * Add GingerBread House
+    * Add Own Cookie Dim
+    * ...
+    * Profit?
+    */
 
     @Mod.Instance(Reference.MOD_ID)
     public static Cookies instance;
