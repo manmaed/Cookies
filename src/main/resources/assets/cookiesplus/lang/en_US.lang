@@ -38,12 +38,15 @@ item.doublechocolatecircle.name=Double Chocolate Chip Circle Cookie
 item.doublechocolatesquare.name=Double Chocolate Chip Square Cookie
 item.doublechocolatestar.name=DoubleChocolate Chip Star Cookie
 
+## Jaffa Cake?
+item.jaffa_cake.name=Jaffa Cake
+
 
 ## Tree Stuff
 tile.sapling_orange.name=Orange Sapling
 tile.log_orange.name=Orange Wood
 tile.leaves_orange.name=Orange Leaves
-tile.plank_orange.nameOrange Wood Plank
+tile.plank_orange.name=Orange Wood Plank
 item.orange.name=Orange
 
 # Blocks

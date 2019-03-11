@@ -54,6 +54,8 @@ public class CookieItems {
     public static CookieFoodBase cookietree;
     public static CookieFoodBase cookiegbman;
 
+    public static CookieFoodBase jaffacake;
+
 
     public static void load() {
         //Init'ing
@@ -101,6 +103,8 @@ public class CookieItems {
         doublechocolateSquare = new CookieFoodBase("doublechocolatesquare", 2, 0.4F);
         doublechocolateStar = new CookieFoodBase("doublechocolatestar", 2, 0.4F);
 
+        jaffacake = new CookieFoodBase("jaffa_cake", 2, 0.5F);
+
 
         RegistryHelper.registerItem(yellowRibbon, "ribbon_yellow");
         RegistryHelper.registerItem(handgrinder, "hand_grinder");
@@ -142,8 +146,11 @@ public class CookieItems {
         RegistryHelper.registerItem(cookietree, "cookietree");
         RegistryHelper.registerItem(cookiegbman, "cookiegbman");
 
+        RegistryHelper.registerItem(jaffacake, "jaffa_cake");
+
         OreDictionary.registerOre("orange", orange);
         OreDictionary.registerOre("ginger", ginger);
+        OreDictionary.registerOre("jaffacake", jaffacake);
 
         //MinecraftForge.addGrassSeed(new ItemStack(ginger), 10);
     }
