@@ -32,23 +32,22 @@ public class CookieContainer extends Container {
     }
 
     @Override
-    public ItemStack transferSlot(PlayerEntity playerEntity_1, int int_1) {
+    public ItemStack transferSlot(PlayerEntity playerEntity, int slotSpot) {
         ItemStack itemStack = ItemStack.EMPTY;
-        Slot slot_1 = this.slotList.get(int_1);
-        if (slot_1 != null && slot_1.hasStack()) {
-            ItemStack itemStack_2 = slot_1.getStack();
-            if (int_1 < 4) {
+        Slot slot = this.slotList.get(slotSpot);
+        if (slot != null && slot.hasStack()) {
+            ItemStack itemStack_2 = slot.getStack();
+            if (slotSpot < 4) {
                 if (!this.insertItem(itemStack_2, 4, this.slotList.size(), true)) {
                     return ItemStack.EMPTY;
                 }
             } else if (!this.insertItem(itemStack_2, 0, 4, false)) {
                 return ItemStack.EMPTY;
             }
-
             if (itemStack_2.isEmpty()) {
-                slot_1.setStack(ItemStack.EMPTY);
+                slot.setStack(ItemStack.EMPTY);
             } else {
-                slot_1.markDirty();
+                slot.markDirty();
             }
         }
 

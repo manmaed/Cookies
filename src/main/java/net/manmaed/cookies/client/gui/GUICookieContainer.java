@@ -22,6 +22,6 @@ public class GUICookieContainer extends ContainerScreen<CookieContainer> {
     @Override
     protected void drawBackground(float var1, int var2, int var3) {
         client.getTextureManager().bindTexture(background);
-        this.drawTexturedRect(left, top, 0, 0, containerWidth, containerHeight);
+        this.drawTexturedRect(left, top, 0, 0, width, height);
     }
 }

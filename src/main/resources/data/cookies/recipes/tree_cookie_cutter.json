@@ -7,12 +7,10 @@
       ],
       "key": {
           "i": {
-              "item": "minecraft:dye",
-            "data": 4
+              "item" : "minecraft:blue_dye"
           },
           "O": {
-            "item": "minecraft:planks",
-            "data": 0
+            "tag": "minecraft:planks"
           }
       },
   "result": {

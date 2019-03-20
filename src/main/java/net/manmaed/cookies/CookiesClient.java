@@ -17,10 +17,9 @@ import net.minecraft.util.Identifier;
 
 public class CookiesClient implements ClientModInitializer {
 
-
     @Override
     public void onInitializeClient() {
-        System.out.println("Loading Cookies Client!");
+        System.out.println("Loading Cookie Client!");
         ScreenProviderRegistry.INSTANCE.registerFactory(Cookies.CON, GUICookieContainer::new);
 
     }

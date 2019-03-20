@@ -1,16 +1,15 @@
 package net.manmaed.cookies.blocks;
 
+import com.unrealdinnerbone.unreallib.api.RegistryHelper;
+import com.unrealdinnerbone.unreallib.api.SaplingBlock;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.manmaed.cookies.Cookies;
-import net.manmaed.cookies.items.CookieItems;
-import net.manmaed.cookies.items.Ginger;
+import net.manmaed.cookies.lib.EnumUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.item.Item;
-import net.minecraft.item.block.BlockItem;
+import net.minecraft.item.SeedsItem;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import static net.manmaed.cookies.items.CookieItems.ITEM_SETTINGS;
 
@@ -24,21 +23,25 @@ public class CookieBlocks {
     public static Item ginger;
 
 
-    public static void load() {
-        gingerBlockCrop = new GingerBlockCrop(BLOCK_CROP_SETTINGS );
+
+    public static void load(RegistryHelper registry) {
+        gingerBlockCrop = new GingerBlockCrop(BLOCK_CROP_SETTINGS);
         giftBox = new BlockGiftBox(BLOCK_SETTINGS_CHEST);
+        registry.registerBlock(gingerBlockCrop, "ginger_crop");
+        registry.registerBlockWithItem(giftBox, ITEM_SETTINGS, "giftbox");
+        ginger = registry.registerItem(new SeedsItem(gingerBlockCrop, ITEM_SETTINGS), "ginger");
+//        registry.registerBlockWithItem(new SaplingBlock(Cookies.worldGenTree, BLOCK_CROP_SETTINGS), ITEM_SETTINGS, "sapling_block");
+    }
 
+    public enum Blocks {
+        ORANGE_LEAVE,
+        ORANGE_LOG,
+        ORANGE_WOOD;
 
-        Registry.register(Registry.BLOCK, new Identifier(Cookies.MOD_ID, "ginger_crop"), gingerBlockCrop);
-        Registry.register(Registry.BLOCK, new Identifier(Cookies.MOD_ID, "giftbox"), giftBox);
+        Block block;
 
-        ginger = new Ginger(ITEM_SETTINGS);
-        Registry.register(Registry.ITEM, new Identifier(Cookies.MOD_ID, "ginger"), ginger);
-
-        Registry.register(Registry.ITEM, new Identifier(Cookies.MOD_ID, "giftbox"), new BlockItem(giftBox, CookieItems.ITEM_SETTINGS));
-//        RegistryHelper.registerBlock(gingerBlock, "gingerBlock");
-//        RegistryHelper.registerBlock(giftBox, "giftbox");
-//
-//        GameRegistry.registerTileEntity(BlockEntityGiftBox.class, new ResourceLocation(Reference.MOD_ID, "giftbox"));
+        Blocks() {
+//            this.block = new Block(EnumUtil.getNameOfEnum(this), );
+        }
     }
 }

@@ -5,7 +5,7 @@
     { "item": "minecraft:yellow_dye" }
   ],
   "result": {
-    "item": "cookiesplus:ribbon_yellow",
+    "item": "cookies:ribbon_yellow",
     "count": 2
 
   }

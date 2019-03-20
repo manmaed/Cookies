@@ -12,8 +12,8 @@ public class CookieContainers
 
 
     public static void init() {
-//        ContainerProviderRegistry.INSTANCE.registerFactory(new Identifier(Cookies.MOD_ID, "cookie_container"), (syncId, identifier, player, buf) -> new CookieContainer(syncId, player.inventory));
-//        Registry.register(Registry.CONTAINER, new Identifier(Cookies.MOD_ID, "cookie_container"), );
+//        ContainerProviderRegistry.INSTANCE.registerFactory(new Identifier(Cookie.MOD_ID, "cookie_container"), (syncId, identifier, player, buf) -> new CookieContainer(syncId, player.inventory));
+//        Registry.register(Registry.CONTAINER, new Identifier(Cookie.MOD_ID, "cookie_container"), );
     }
 
 }

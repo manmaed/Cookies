@@ -7,8 +7,7 @@
   ],
   "key": {
     "w": {
-      "item": "minecraft:wool",
-      "data": 14
+      "item" : "minecraft:red_wool"
     },
     "s": {
       "item": "cookies:ribbon_yellow"

@@ -5,7 +5,6 @@ import net.manmaed.cookies.Cookies;
 import net.manmaed.cookies.tile.BlockEntityGiftBox;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.container.NameableContainerProvider;
 import net.minecraft.entity.VerticalEntityPosition;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -41,25 +40,27 @@ public class BlockGiftBox extends BlockWithEntity implements Waterloggable {
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState blockState, Direction direction_1, BlockState blockState_2, IWorld iWorld_1, BlockPos blockPos_1, BlockPos blockPos_2) {
+    public BlockState getStateForNeighborUpdate(BlockState blockState, Direction direction_1, BlockState blockState_2, IWorld world, BlockPos blockPos, BlockPos blockPos_2) {
         if (blockState.get(WATERLOGGED)) {
-            iWorld_1.getFluidTickScheduler().schedule(blockPos_1, Fluids.WATER, Fluids.WATER.getTickRate(iWorld_1));
+            world.getFluidTickScheduler().schedule(blockPos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
-        return super.getStateForNeighborUpdate(blockState, direction_1, blockState_2, iWorld_1, blockPos_1, blockPos_2);
+        return super.getStateForNeighborUpdate(blockState, direction_1, blockState_2, world, blockPos, blockPos_2);
     }
 
     @Override
     public FluidState getFluidState(BlockState blockState) {
        return blockState.get(WATERLOGGED) ? Fluids.WATER.getState(false) : super.getFluidState(blockState);
+
     }
 
     @Override
-    public boolean activate(BlockState blockState_1, World world_1, BlockPos blockPos_1, PlayerEntity playerEntity_1, Hand hand_1, BlockHitResult blockHitResult_1) {
-        if (world_1.isClient) {
+    public boolean activate(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockHitResult hitResult) {
+        if (world.isClient) {
             return true;
         } else {
-            if(world_1.getBlockEntity(blockPos_1) instanceof BlockEntityGiftBox)
-            ContainerProviderRegistry.INSTANCE.openContainer(Cookies.CON, playerEntity_1, buf -> buf.writeBlockPos(blockPos_1));
+            if(world.getBlockEntity(blockPos) instanceof BlockEntityGiftBox) {
+                ContainerProviderRegistry.INSTANCE.openContainer(Cookies.CON, playerEntity, buf -> buf.writeBlockPos(blockPos));
+            }
             return true;
         }
     }
