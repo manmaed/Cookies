@@ -1,22 +1,38 @@
-# eclipse
-bin
-*.launch
-.settings
-.metadata
-.classpath
-.project
+# Yarm #
+*.class
+/run
+run\
+apples.test
 
-# idea
-out
+# Package Files #
+*.war
+*.ear
+
+# IDEA Files #
+*.iml
 *.ipr
 *.iws
-*.iml
-.idea
+/.idea
 
-# gradle
-build
-.gradle
+# Eclipse #
+/bin
+/.settings
+/.classpath
+/eclipse
+/.project
+/.metadata
 
-# other
-eclipse
-run
+# Gradle #
+/classes
+/.gradle
+/out
+/build
+/libs
+/lib
+
+MinecraftForge-Credits.txt
+README.txt
+CREDITS-fml.txt
+LICENSE-fml.txt
+
+run/*
