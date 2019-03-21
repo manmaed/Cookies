@@ -10,6 +10,8 @@ import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class CookieItems {
 
@@ -19,24 +21,37 @@ public class CookieItems {
     public static void load(RegistryHelper registry) {
         System.out.println("Cooking " + Cookie.Types.values().length * Cookie.Cutters.values().length + " Cookie!");
         Arrays.stream(Cookie.Cutters.values()).forEach(shape -> registry.registerItem(createBasicItem(), EnumUtil.getNameOfEnum(shape) + "_cookie_cutter"));
-        Arrays.stream(Cookie.Cutters.values()).forEach(shape -> Arrays.stream(Cookie.Types.values()).forEach(type -> registry.registerItem(createFoodItem(getHungerRestored(shape, type), getStationAmount(shape, type)), EnumUtil.getNameOfEnum(shape, type) + "_cookie")));
+        Arrays.stream(Cookie.Cutters.values()).forEach(shape -> Arrays.stream(Cookie.Types.values()).forEach(type -> {
+            IHungerFood iHungerFood = new IHungerFood() {
+                @Override
+                public ItemGroup getItemGroup() {
+                    return BASIC_ITEM_GROUP;
+                }
+                @Override
+                public int getHungerRestored() {
+                    return CookieItems.getHungerRestored(shape, type);
+                }
+                @Override
+                public float getStation() {
+                    return CookieItems.getStationAmount(shape, type);
+                }
+            };
+            registry.registerItem(new Item(iHungerFood.getItemSetting()), EnumUtil.getNameOfEnum(shape, type) + "_cookie");
+        }));
         registry.registerEnumAsItem(Basic.class);
-        registry.registerEnumAsFoodItem(Foods.class);
+        registry.registerEnumAsItem(Foods.class);
     }
 
     private static Item createBasicItem() {
         return new Item(ITEM_SETTINGS);
     }
-    private static FoodItem createFoodItem(int f1, float f2) {
-        return new FoodItem(f1, f2, false, ITEM_SETTINGS);
-    }
 
-    public static float getStationAmount(IHungerFood... iHungeFood) {
-        float nunber = 0;
-        for (IHungerFood hungeFood : iHungeFood) {
-            nunber += hungeFood.getStation();
+    public static float getStationAmount(IHungerFood... iHungerFood) {
+        float count = 0;
+        for (IHungerFood hungerFood : iHungerFood) {
+            count += hungerFood.getStation();
         }
-        return nunber;
+        return count;
     }
 
     public static int getHungerRestored(IHungerFood... iHungerFood) {
@@ -56,6 +71,11 @@ public class CookieItems {
             Cutters(int hungerRestored, float station) {
                 this.hungerRestored = hungerRestored;
                 this.station = station;
+            }
+
+            @Override
+            public ItemGroup getItemGroup() {
+                return BASIC_ITEM_GROUP;
             }
 
             @Override
@@ -91,6 +111,11 @@ public class CookieItems {
             }
 
             @Override
+            public ItemGroup getItemGroup() {
+                return getItemGroup();
+            }
+
+            @Override
             public Item.Settings getItemSetting() {
                 return ITEM_SETTINGS;
             }
@@ -120,6 +145,11 @@ public class CookieItems {
         public Item.Settings getItemSetting() {
             return ITEM_SETTINGS;
         }
+
+        @Override
+        public ItemGroup getItemGroup() {
+            return BASIC_ITEM_GROUP;
+        }
     }
 
     public enum Foods implements IHungerFood {
@@ -137,11 +167,6 @@ public class CookieItems {
         }
 
         @Override
-        public Item.Settings getItemSetting() {
-            return ITEM_SETTINGS;
-        }
-
-        @Override
         public int getHungerRestored() {
             return hungerRestored;
         }
@@ -149,6 +174,11 @@ public class CookieItems {
         @Override
         public float getStation() {
             return station;
+        }
+
+        @Override
+        public ItemGroup getItemGroup() {
+            return BASIC_ITEM_GROUP;
         }
     }
 }

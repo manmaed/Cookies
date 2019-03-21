@@ -2,7 +2,6 @@ package com.unrealdinnerbone.unreallib.api;
 
 import net.manmaed.cookies.lib.EnumUtil;
 import net.minecraft.block.Block;
-import net.minecraft.item.FoodItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.block.BlockItem;
 import net.minecraft.util.Identifier;
@@ -36,10 +35,6 @@ public class RegistryHelper {
 
     public <T extends Enum<T> & IItemEnum> void registerEnumAsItem(Class<T> enumClass) {
         Arrays.stream(enumClass.getEnumConstants()).forEach(enumConstant -> registerItem(new Item(enumConstant.getItemSetting()), EnumUtil.getNameOfEnum(enumConstant)));
-    }
-    public <T extends Enum<T> & IHungerFood> void registerEnumAsFoodItem(Class<T> enumClass) {
-        Arrays.stream(enumClass.getEnumConstants()).forEach(enumConstant -> registerItem(new FoodItem(enumConstant.getHungerRestored(), enumConstant.getStation(), enumConstant.isWolfFood(), enumConstant.getItemSetting()), EnumUtil.getNameOfEnum(enumConstant)));
-
     }
 
     private Identifier createIdentifier(String path) {

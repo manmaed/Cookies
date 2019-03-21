@@ -2,15 +2,17 @@ package net.manmaed.cookies.tile;
 
 import net.manmaed.cookies.Cookies;
 import net.manmaed.cookies.container.CookieContainer;
+import net.minecraft.block.InventoryProvider;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.container.Container;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.TextComponent;
 import net.minecraft.text.TranslatableTextComponent;
 import net.minecraft.util.DefaultedList;
-import net.minecraft.util.InventoryUtil;
 
 public class BlockEntityGiftBox extends LootableContainerBlockEntity {
 
@@ -47,7 +49,7 @@ public class BlockEntityGiftBox extends LootableContainerBlockEntity {
         super.fromTag(compoundTag);
         this.inventory = DefaultedList.create(this.getInvSize(), ItemStack.EMPTY);
         if (!this.deserializeLootTable(compoundTag)) {
-            InventoryUtil.deserialize(compoundTag, this.inventory);
+            Inventories.fromTag(compoundTag, this.inventory);
         }
 
     }
@@ -56,7 +58,7 @@ public class BlockEntityGiftBox extends LootableContainerBlockEntity {
     public CompoundTag toTag(CompoundTag compoundTag) {
         super.toTag(compoundTag);
         if (!this.serializeLootTable(compoundTag)) {
-            InventoryUtil.serialize(compoundTag, this.inventory);
+            Inventories.toTag(compoundTag, this.inventory);
         }
         return compoundTag;
     }
