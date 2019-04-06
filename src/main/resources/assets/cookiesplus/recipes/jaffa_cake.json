@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "c",
+    "o",
+    "d"
+  ],
+  "key": {
+    "c": {
+      "item": "cookiesplus:chocolate_powder"
+    },
+    "o": {
+      "item": "cookiesplus:orangepowder"
+    },
+    "d": {
+      "item": "cookiesplus:cookie_dough"
+    }
+  },
+  "result": {
+    "item": "cookiesplus:jaffa_cake"
+  }
+}

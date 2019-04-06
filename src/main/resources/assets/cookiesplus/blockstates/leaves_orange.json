@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "normal": { "model": "cookiesplus:leaves_orange" },
+    "inventory": { "model": "cookiesplus:leaves_orange" },
+    "check_decay=true,decayable=true":{ "model": "cookiesplus:leaves_orange" },
+    "check_decay=true,decayable=false":{ "model": "cookiesplus:leaves_orange" },
+    "check_decay=false,decayable=true":{ "model": "cookiesplus:leaves_orange" },
+    "check_decay=false,decayable=false": { "model": "cookiesplus:leaves_orange" }
+  }
+}

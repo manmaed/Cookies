@@ -5,6 +5,7 @@ import net.manmaed.cookiesplus.items.base.CookieFoodBase;
 import net.manmaed.cookiesplus.items.base.CookieItemBase;
 import net.manmaed.cookiesplus.libs.RegistryHelper;
 import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Created by manmaed on 13/01/2019.
@@ -21,6 +22,8 @@ public class CookieItems {
     public static CookieItemBase gingerPowder;
     public static Item ginger;
     public static CookieItemBase chocpowder;
+    public static CookieFoodBase orange;
+    public static CookieItemBase orangepowder;
 
     //Cookie Cutters
     public static CookieCutterBase ccCircle;
@@ -51,6 +54,8 @@ public class CookieItems {
     public static CookieFoodBase cookietree;
     public static CookieFoodBase cookiegbman;
 
+    public static CookieFoodBase jaffacake;
+
 
     public static void load() {
         //Init'ing
@@ -65,6 +70,9 @@ public class CookieItems {
         gingerPowder = new CookieItemBase("gingerpowder");
         ginger = new Ginger();
         chocpowder = new CookieItemBase("chocpowder");
+        orange = new CookieFoodBase("orange",4, 0.2F);
+        orangepowder = new CookieItemBase("orangepowder");
+
 
         //Cookie Cutters
         ccCircle = new CookieCutterBase("circle");
@@ -95,6 +103,8 @@ public class CookieItems {
         doublechocolateSquare = new CookieFoodBase("doublechocolatesquare", 2, 0.4F);
         doublechocolateStar = new CookieFoodBase("doublechocolatestar", 2, 0.4F);
 
+        jaffacake = new CookieFoodBase("jaffa_cake", 2, 0.5F);
+
 
         RegistryHelper.registerItem(yellowRibbon, "ribbon_yellow");
         RegistryHelper.registerItem(handgrinder, "hand_grinder");
@@ -104,6 +114,8 @@ public class CookieItems {
         RegistryHelper.registerItem(gingerPowder, "gingerpowder");
         RegistryHelper.registerItem(ginger, "ginger");
         RegistryHelper.registerItem(chocpowder, "chocolate_powder");
+        RegistryHelper.registerItem(orange, "orange");
+        RegistryHelper.registerItem(orangepowder, "orangepowder");
 
         //Cutters
         RegistryHelper.registerItem(ccCircle, "cookie_cutter_circle");
@@ -133,6 +145,12 @@ public class CookieItems {
 
         RegistryHelper.registerItem(cookietree, "cookietree");
         RegistryHelper.registerItem(cookiegbman, "cookiegbman");
+
+        RegistryHelper.registerItem(jaffacake, "jaffa_cake");
+
+        OreDictionary.registerOre("orange", orange);
+        OreDictionary.registerOre("ginger", ginger);
+        OreDictionary.registerOre("jaffacake", jaffacake);
 
         //MinecraftForge.addGrassSeed(new ItemStack(ginger), 10);
     }

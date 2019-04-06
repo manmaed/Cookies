@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "normal": { "model": "cookiesplus:plank_orange" },
+    "inventory": { "model": "cookiesplus:plank_orange" }
+  }
+}
