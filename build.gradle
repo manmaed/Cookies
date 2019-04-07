@@ -9,7 +9,13 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "0.1.1"
+def ENV = System.getenv()
+version = ENV.BUILD_NUMBER ? "${mod_version}.${ENV.BUILD_NUMBER}" : ;
+replace '@VERSION@', project.version
+replaceIn "mcmod.info"
+replaceIn "Reference.java"
+
+//version = "0.1.1"
 group = "net.manmaed.cookies"
 archivesBaseName = "cookies"
 

@@ -7,7 +7,7 @@ public class Reference {
 
     public static final String MOD_ID = "cookiesplus";
     public static final String MOD_NAME = "Cookies";
-    public static final String VERSION = "0.1.1";
+    public static final String VERSION = "@VERSION@";
     public static final String PROXYLOC = "net.manmaed." + MOD_ID + ".proxy.";
     public static final String CLIENT_PROXY = PROXYLOC + "ClientProxy";
     public static final String PROXY_COMMON = PROXYLOC + "CommonProxy";
