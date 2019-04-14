@@ -1,5 +1,6 @@
-package net.manmaed.cookies.blocks;
+package com.unrealdinnerbone.unreallib.api;
 
+import com.unrealdinnerbone.unreallib.api.container.IContainer;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.manmaed.cookies.Cookies;
 import net.manmaed.cookies.tile.BlockEntityGiftBox;
@@ -23,41 +24,25 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import org.lwjgl.system.CallbackI;
 
-public class BlockGiftBox extends BlockWithEntity implements Waterloggable {
+public abstract class BlockWithContainerBox<T extends BlockEntity> extends BlockWithEntity {
 
-    private static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
-    private static final VoxelShape BOUNDING_BOX = VoxelShapes.union(Block.createCuboidShape(2.5D, 0.0D, 2.5D, 13.5D, 5.0D, 13.5D), Block.createCuboidShape(1.5D, 5.0D, 1.5D, 14.5D, 8.0D, 14.5D));
+    private final IContainer iContainer;
+    private final Class<T> blockEntityClass;
 
-    public BlockGiftBox(Block.Settings settings) {
+    public BlockWithContainerBox(Settings settings, IContainer iContainer, Class<T> blockEntityClass) {
         super(settings);
-        this.setDefaultState(this.stateFactory.getDefaultState().with(WATERLOGGED, false));
-
-    }
-
-    public VoxelShape getOutlineShape(BlockState blockState_1, BlockView blockView_1, BlockPos blockPos_1, VerticalEntityPosition verticalEntityPosition_1) {
-        return BOUNDING_BOX;
-    }
-
-    @Override
-    public BlockState getStateForNeighborUpdate(BlockState blockState, Direction direction_1, BlockState blockState_2, IWorld world, BlockPos blockPos, BlockPos blockPos_2) {
-        if (blockState.get(WATERLOGGED)) {
-            world.getFluidTickScheduler().schedule(blockPos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-        }
-        return super.getStateForNeighborUpdate(blockState, direction_1, blockState_2, world, blockPos, blockPos_2);
-    }
-
-    @Override
-    public FluidState getFluidState(BlockState blockState) {
-       return blockState.get(WATERLOGGED) ? Fluids.WATER.getState(false) : super.getFluidState(blockState);
-
+        this.iContainer = iContainer;
+        this.blockEntityClass = blockEntityClass;
     }
 
     @Override
     public boolean activate(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockHitResult hitResult) {
         if(!world.isClient) {
-            if(world.getBlockEntity(blockPos) instanceof BlockEntityGiftBox) {
-                ContainerProviderRegistry.INSTANCE.openContainer(Cookies.CON, playerEntity, buf -> buf.writeBlockPos(blockPos));
+            T blockEntity = getBlockEntity(world.getBlockEntity(blockPos));
+            if (blockEntity != null) {
+                ContainerProviderRegistry.INSTANCE.openContainer(iContainer.getID(), playerEntity, byteBuf -> iContainer.write(byteBuf, blockState, world, blockPos, playerEntity, hand, hitResult));
                 return true;
             }
             return false;
@@ -66,23 +51,13 @@ public class BlockGiftBox extends BlockWithEntity implements Waterloggable {
     }
 
     @Override
-    public BlockRenderType getRenderType(BlockState blockState) {
-        return BlockRenderType.MODEL;
-    }
-
-    @Override
-    protected void appendProperties(StateFactory.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.with(WATERLOGGED);
-    }
-
-    @Override
-    public boolean hasDynamicBounds() {
-        return true;
-    }
-
-    @Override
-    public BlockEntity createBlockEntity(BlockView var1) {
-        return new BlockEntityGiftBox();
+    public T createBlockEntity(BlockView var1) {
+        try {
+            return blockEntityClass.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -97,4 +72,14 @@ public class BlockGiftBox extends BlockWithEntity implements Waterloggable {
             super.onBlockRemoved(blockState_1, world, blockPos, blockState_2, boolean_1);
         }
     }
+
+    public T getBlockEntity(BlockEntity blockEntity) {
+        if(blockEntity != null) {
+            if(blockEntity.getClass().getName().equals(blockEntityClass.getName())) {
+                return ((T) blockEntity);
+            }
+        }
+        return null;
+    }
+
 }
