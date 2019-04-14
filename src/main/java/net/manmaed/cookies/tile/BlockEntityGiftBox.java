@@ -18,9 +18,8 @@ public class BlockEntityGiftBox extends LootableContainerBlockEntity {
 
     private DefaultedList<ItemStack> inventory;
 
-
     public BlockEntityGiftBox() {
-        super(CookieBlockEntities.GIFT_BOX);
+        super(CookieBlockEntities.GIFT_BOX.get());
         this.inventory = DefaultedList.create(4, ItemStack.EMPTY);
     }
 

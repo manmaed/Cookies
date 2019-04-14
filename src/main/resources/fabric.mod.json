@@ -1,10 +1,25 @@
 {
+  "schemaVersion": 1,
   "id": "cookies",
-  "name": "Cookies",
   "version": "1.0.0",
-  "side": "universal",
-  "initializers": [
-    "net.manmaed.cookies.Cookies",
-    "net.manmaed.cookies.CookiesClient"
+  "name": "Cookies",
+  "description": "Adds Cookies",
+  "authors": [
+    "UnRealDinnerbone",
+    "manmaed"
+  ],
+  "icon": "assets/cookies/logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.manmaed.cookies.Cookies"
+    ],
+    "client" : [
+      "net.manmaed.cookies.CookiesClient"
     ]
+  },
+  "requires": {
+    "fabricloader": "=>0.4.0",
+    "fabric": "*"
+  }
 }

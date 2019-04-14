@@ -11,12 +11,10 @@ import java.util.stream.IntStream;
 
 public class CookieContainer extends Container {
 
-    private final Inventory inventory;
     public final PlayerEntity playerEntity;
 
-    public CookieContainer(int syncId, PlayerEntity playerEntity, Inventory inventory) {
+    public CookieContainer(Integer syncId, PlayerEntity playerEntity, Inventory inventory) {
         super(null, syncId);
-        this.inventory = inventory;
         this.playerEntity = playerEntity;
         PlayerInventory playerInventory = playerEntity.inventory;
         IntStream.range(0, 9).mapToObj(j -> new Slot(playerInventory, j + 9, 8 + j * 18, 84)).forEach(this::addSlot);

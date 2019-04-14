@@ -1,4 +1,4 @@
-package com.unrealdinnerbone.unreallib.api;
+package com.unrealdinnerbone.unreallib.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;

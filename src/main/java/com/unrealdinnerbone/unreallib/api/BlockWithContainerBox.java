@@ -1,32 +1,36 @@
 package net.manmaed.cookies.blocks;
 
-import com.unrealdinnerbone.unreallib.api.BlockWithContainerBox;
-import net.manmaed.cookies.container.CookieContainers;
+import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
+import net.manmaed.cookies.Cookies;
 import net.manmaed.cookies.tile.BlockEntityGiftBox;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Waterloggable;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.VerticalEntityPosition;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.sortme.ItemScatterer;
 import net.minecraft.state.StateFactory;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 
-public class BlockGiftBox extends BlockWithContainerBox<BlockEntityGiftBox> implements Waterloggable {
+public class BlockGiftBox extends BlockWithEntity implements Waterloggable {
 
     private static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     private static final VoxelShape BOUNDING_BOX = VoxelShapes.union(Block.createCuboidShape(2.5D, 0.0D, 2.5D, 13.5D, 5.0D, 13.5D), Block.createCuboidShape(1.5D, 5.0D, 1.5D, 14.5D, 8.0D, 14.5D));
 
     public BlockGiftBox(Block.Settings settings) {
-        super(settings, CookieContainers.COOKIE, BlockEntityGiftBox.class);
+        super(settings);
         this.setDefaultState(this.stateFactory.getDefaultState().with(WATERLOGGED, false));
 
     }
@@ -50,6 +54,18 @@ public class BlockGiftBox extends BlockWithContainerBox<BlockEntityGiftBox> impl
     }
 
     @Override
+    public boolean activate(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockHitResult hitResult) {
+        if(!world.isClient) {
+            if(world.getBlockEntity(blockPos) instanceof BlockEntityGiftBox) {
+                ContainerProviderRegistry.INSTANCE.openContainer(Cookies.CON, playerEntity, buf -> buf.writeBlockPos(blockPos));
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
     public BlockRenderType getRenderType(BlockState blockState) {
         return BlockRenderType.MODEL;
     }
@@ -62,5 +78,23 @@ public class BlockGiftBox extends BlockWithContainerBox<BlockEntityGiftBox> impl
     @Override
     public boolean hasDynamicBounds() {
         return true;
+    }
+
+    @Override
+    public BlockEntity createBlockEntity(BlockView var1) {
+        return new BlockEntityGiftBox();
+    }
+
+    @Override
+    public void onBlockRemoved(BlockState blockState_1, World world, BlockPos blockPos, BlockState blockState_2, boolean boolean_1) {
+        if (blockState_1.getBlock() != blockState_2.getBlock()) {
+            BlockEntity blockEntity = world.getBlockEntity(blockPos);
+            if (blockEntity instanceof Inventory) {
+                ItemScatterer.spawn(world, blockPos, (Inventory) blockEntity);
+                world.updateHorizontalAdjacent(blockPos, this);
+            }
+
+            super.onBlockRemoved(blockState_1, world, blockPos, blockState_2, boolean_1);
+        }
     }
 }

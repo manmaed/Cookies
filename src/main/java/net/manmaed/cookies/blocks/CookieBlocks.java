@@ -1,6 +1,7 @@
 package net.manmaed.cookies.blocks;
 
-import com.unrealdinnerbone.unreallib.api.RegistryHelper;
+import com.unrealdinnerbone.unreallib.api.registry.IRegistryItem;
+import com.unrealdinnerbone.unreallib.api.UnRealRegistry;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
@@ -12,6 +13,7 @@ import static net.manmaed.cookies.items.CookieItems.ITEM_SETTINGS;
 
 public class CookieBlocks {
 
+
     private final static Block.Settings BLOCK_CROP_SETTINGS = FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).build();
     private final static Block.Settings BLOCK_SETTINGS_CHEST = FabricBlockSettings.of(Material.WOOD).build();
 
@@ -21,7 +23,7 @@ public class CookieBlocks {
 
 
 
-    public static void load(RegistryHelper registry) {
+    public static void load(UnRealRegistry registry) {
         gingerBlockCrop = new GingerBlockCrop(BLOCK_CROP_SETTINGS);
         giftBox = new BlockGiftBox(BLOCK_SETTINGS_CHEST);
         registry.registerBlock(gingerBlockCrop, "ginger_crop");
@@ -30,7 +32,7 @@ public class CookieBlocks {
 //        registry.registerBlockWithItem(new SaplingBlock(Cookies.worldGenTree, BLOCK_CROP_SETTINGS), ITEM_SETTINGS, "sapling_block");
     }
 
-    public enum Blocks {
+    public enum Blocks implements IRegistryItem<Block> {
         ORANGE_LEAVE,
         ORANGE_LOG,
         ORANGE_WOOD;
@@ -39,6 +41,11 @@ public class CookieBlocks {
 
         Blocks() {
 //            this.block = new Block(EnumUtil.getNameOfEnum(this), );
+        }
+
+        @Override
+        public Block get() {
+            return null;
         }
     }
 }

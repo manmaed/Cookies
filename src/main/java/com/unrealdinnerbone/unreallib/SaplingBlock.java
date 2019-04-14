@@ -1,4 +1,4 @@
-package com.unrealdinnerbone.unreallib.api;
+package com.unrealdinnerbone.unreallib;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -55,7 +55,6 @@ public class SaplingBlock extends PlantBlock implements Fertilizable {
         } else {
             this.generator.generate(world, blockPos, blockState, random);
         }
-
     }
 
     public boolean isFertilizable(BlockView blockView, BlockPos blockPos, BlockState blockState, boolean isClient) {
