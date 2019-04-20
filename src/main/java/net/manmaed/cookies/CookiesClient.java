@@ -10,6 +10,6 @@ public class CookiesClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        System.out.println("Loading Cookie Client!");
+        Cookies.LOGGER.info("[Cookies Client] Loading!");
     }
 }
