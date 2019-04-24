@@ -5,8 +5,8 @@ import com.unrealdinnerbone.unreallib.api.UnRealRegistry;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
+import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.StringItem;
 import net.minecraft.sound.BlockSoundGroup;
 
 import static net.manmaed.cookies.items.CookieItems.ITEM_SETTINGS;
@@ -28,7 +28,7 @@ public class CookieBlocks {
         giftBox = new BlockGiftBox(BLOCK_SETTINGS_CHEST);
         registry.registerBlock(gingerBlockCrop, "ginger_crop");
         registry.registerBlockWithItem(giftBox, ITEM_SETTINGS, "giftbox");
-        ginger = registry.registerItem(new StringItem(gingerBlockCrop, ITEM_SETTINGS), "ginger");
+        ginger = registry.registerItem(new AliasedBlockItem(gingerBlockCrop, ITEM_SETTINGS), "ginger");
 //        registry.registerBlockWithItem(new SaplingBlock(Cookies.worldGenTree, BLOCK_CROP_SETTINGS), ITEM_SETTINGS, "sapling_block");
     }
 
