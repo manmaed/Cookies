@@ -3,8 +3,8 @@ package net.manmaed.cookies.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
-import net.minecraft.entity.VerticalEntityPosition;
-import net.minecraft.item.ItemProvider;
+import net.minecraft.entity.EntityContext;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
@@ -17,12 +17,14 @@ public class GingerBlockCrop extends CropBlock {
         super(settings);
     }
 
+
     @Override
-    protected ItemProvider getCropItem() {
+    protected ItemConvertible getSeedsItem() {
         return () -> CookieBlocks.ginger;
     }
 
-    public VoxelShape getOutlineShape(BlockState blockState_1, BlockView blockView_1, BlockPos blockPos_1, VerticalEntityPosition verticalEntityPosition_1) {
+    @Override
+    public VoxelShape getOutlineShape(BlockState blockState_1, BlockView blockView_1, BlockPos blockPos_1, EntityContext entityContext_1) {
         return AGE_TO_SHAPE[blockState_1.get(this.getAgeProperty())];
     }
 }
