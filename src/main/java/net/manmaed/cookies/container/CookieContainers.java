@@ -7,7 +7,7 @@ import net.manmaed.cookies.client.gui.GUICookieContainer;
 import net.manmaed.cookies.tile.BlockEntityGiftBox;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.gui.ContainerScreen;
+import net.minecraft.client.gui.screen.ingame.AbstractContainerScreen;
 import net.minecraft.container.Container;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
@@ -66,7 +66,7 @@ public enum CookieContainers implements IContainer
     }
 
     @Override
-    public ContainerFactory<ContainerScreen> getGuiCon() {
+    public ContainerFactory<AbstractContainerScreen> getGuiCon() {
         return (syncId, identifier, player, buf) -> {
             Container container = getContainer().create(syncId, identifier, player, buf);
             try {

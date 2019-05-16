@@ -2,11 +2,11 @@ package net.manmaed.cookies.client.gui;
 
 import net.manmaed.cookies.Cookies;
 import net.manmaed.cookies.container.CookieContainer;
-import net.minecraft.client.gui.ContainerScreen;
-import net.minecraft.text.StringTextComponent;
+import net.minecraft.client.gui.screen.ingame.AbstractContainerScreen;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.Identifier;
 
-public class GUICookieContainer extends ContainerScreen<CookieContainer> {
+public class GUICookieContainer extends AbstractContainerScreen<CookieContainer> {
 
     private static final int WIDTH = 176;
     private static final int HEIGHT = 166;
@@ -14,7 +14,7 @@ public class GUICookieContainer extends ContainerScreen<CookieContainer> {
     private static final Identifier background = new Identifier(Cookies.MOD_ID, "textures/screen/giftbox.png");
 
     public GUICookieContainer(CookieContainer cookieContainer) {
-        super(cookieContainer, cookieContainer.playerEntity.inventory, new StringTextComponent("Test"));
+        super(cookieContainer, cookieContainer.playerEntity.inventory, new TextComponent("Test"));
         width = WIDTH;
         height = HEIGHT;
     }

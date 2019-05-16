@@ -2,7 +2,7 @@ package com.unrealdinnerbone.unreallib.api.container;
 
 import net.fabricmc.fabric.api.container.ContainerFactory;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.gui.ContainerScreen;
+import net.minecraft.client.gui.screen.ingame.AbstractContainerScreen;
 import net.minecraft.container.Container;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
@@ -19,6 +19,6 @@ public interface IContainer {
 
     ContainerFactory<Container> getContainer();
 
-    ContainerFactory<ContainerScreen> getGuiCon();
+    ContainerFactory<AbstractContainerScreen> getGuiCon();
 
 }

@@ -2,17 +2,17 @@ package net.manmaed.cookies.tile;
 
 import net.manmaed.cookies.Cookies;
 import net.manmaed.cookies.container.CookieContainer;
-import net.minecraft.block.InventoryProvider;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.container.Container;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.text.TextComponent;
-import net.minecraft.text.TranslatableTextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.DefaultedList;
+
+import java.awt.*;
 
 public class BlockEntityGiftBox extends LootableContainerBlockEntity {
 
@@ -63,9 +63,10 @@ public class BlockEntityGiftBox extends LootableContainerBlockEntity {
     }
 
     @Override
-    protected TextComponent getContainerName() {
-        return new TranslatableTextComponent(Cookies.MOD_ID+ "container.giftbox");
+    protected Component getContainerName() {
+        return new TranslatableComponent(Cookies.MOD_ID+ "container.giftbox");
     }
+
 
     protected Container createContainer(int int_1, PlayerInventory playerInventory) {
         return new CookieContainer(int_1, playerInventory.player, this);

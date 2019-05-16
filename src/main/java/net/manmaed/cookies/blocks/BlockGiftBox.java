@@ -7,7 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Waterloggable;
-import net.minecraft.entity.VerticalEntityPosition;
+import net.minecraft.entity.EntityContext;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.state.StateFactory;
@@ -28,10 +28,11 @@ public class BlockGiftBox extends BlockWithContainerBox<BlockEntityGiftBox> impl
     public BlockGiftBox(Block.Settings settings) {
         super(settings, CookieContainers.COOKIE, BlockEntityGiftBox.class);
         this.setDefaultState(this.stateFactory.getDefaultState().with(WATERLOGGED, false));
-
     }
 
-    public VoxelShape getOutlineShape(BlockState blockState_1, BlockView blockView_1, BlockPos blockPos_1, VerticalEntityPosition verticalEntityPosition_1) {
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState blockState_1, BlockView blockView_1, BlockPos blockPos_1, EntityContext entityContext_1) {
         return BOUNDING_BOX;
     }
 
@@ -56,7 +57,7 @@ public class BlockGiftBox extends BlockWithContainerBox<BlockEntityGiftBox> impl
 
     @Override
     protected void appendProperties(StateFactory.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.with(WATERLOGGED);
+        stateBuilder.add(WATERLOGGED);
     }
 
     @Override
