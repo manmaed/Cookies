@@ -8,11 +8,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.DefaultedList;
-
-import java.awt.*;
 
 public class BlockEntityGiftBox extends LootableContainerBlockEntity {
 
@@ -20,7 +18,7 @@ public class BlockEntityGiftBox extends LootableContainerBlockEntity {
 
     public BlockEntityGiftBox() {
         super(CookieBlockEntities.GIFT_BOX.get());
-        this.inventory = DefaultedList.create(4, ItemStack.EMPTY);
+        this.inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
     }
 
     @Override
@@ -46,7 +44,7 @@ public class BlockEntityGiftBox extends LootableContainerBlockEntity {
     @Override
     public void fromTag(CompoundTag compoundTag) {
         super.fromTag(compoundTag);
-        this.inventory = DefaultedList.create(this.getInvSize(), ItemStack.EMPTY);
+        this.inventory = DefaultedList.ofSize(this.getInvSize(), ItemStack.EMPTY);
         if (!this.deserializeLootTable(compoundTag)) {
             Inventories.fromTag(compoundTag, this.inventory);
         }
@@ -63,8 +61,8 @@ public class BlockEntityGiftBox extends LootableContainerBlockEntity {
     }
 
     @Override
-    protected Component getContainerName() {
-        return new TranslatableComponent(Cookies.MOD_ID+ "container.giftbox");
+    protected Text getContainerName() {
+        return new TranslatableText(Cookies.MOD_ID+ "container.giftbox");
     }
 
 

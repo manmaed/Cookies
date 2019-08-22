@@ -4,7 +4,7 @@ import com.unrealdinnerbone.unreallib.api.registry.IRegistryItem;
 import com.unrealdinnerbone.unreallib.util.ItemUtil;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.manmaed.cookies.Cookies;
-import net.minecraft.item.FoodItemSetting;
+import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
@@ -12,8 +12,8 @@ import net.minecraft.util.Identifier;
 
 public class CookieItems {
 
-    private final static ItemGroup BASIC_ITEM_GROUP = FabricItemGroupBuilder.create(new Identifier(Cookies.MOD_ID, Cookies.MOD_ID)).icon(ItemUtil.getItemStack(Items.COOKIE)).build();
-    public final static Item.Settings ITEM_SETTINGS = new Item.Settings().itemGroup(BASIC_ITEM_GROUP);
+    private final static ItemGroup BASIC_ITEM_GROUP = FabricItemGroupBuilder.create(new Identifier(Cookies.MOD_ID, Cookies.MOD_ID)).icon(ItemUtil.getItemStack(Items.ACACIA_BUTTON)).build();
+    public final static Item.Settings ITEM_SETTINGS = new Item.Settings().group(BASIC_ITEM_GROUP);
 
     public enum Basic implements IRegistryItem<Item> {
         HAND_GRINDER,
@@ -65,7 +65,7 @@ public class CookieItems {
         private final Item item;
 
         Foods(int hungerRestored, float station) {
-            this.item = new Item(new Item.Settings().itemGroup(BASIC_ITEM_GROUP).food(new FoodItemSetting.Builder().hunger(hungerRestored).saturationModifier(station).build()));
+            this.item = new Item(new Item.Settings().group(BASIC_ITEM_GROUP).food(new FoodComponent.Builder().hunger(hungerRestored).saturationModifier(station).build()));
         }
 
         @Override

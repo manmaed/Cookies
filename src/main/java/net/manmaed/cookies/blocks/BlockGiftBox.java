@@ -30,7 +30,6 @@ public class BlockGiftBox extends BlockWithContainerBox<BlockEntityGiftBox> impl
         this.setDefaultState(this.stateFactory.getDefaultState().with(WATERLOGGED, false));
     }
 
-
     @Override
     public VoxelShape getOutlineShape(BlockState blockState_1, BlockView blockView_1, BlockPos blockPos_1, EntityContext entityContext_1) {
         return BOUNDING_BOX;
