@@ -53,9 +53,10 @@ curseforge {
         releaseType = 'release'
         addGameVersion "${minecraft_version}"
         addGameVersion "Java 8"
+        addGameVersion "Fabric"
         mainArtifact(file("${project.buildDir}/libs/${archivesBaseName}-${version}.jar"))
         relations {
-            requiredDependency 'fabric'
+            requiredDependency 'fabric-api'
         }
         afterEvaluate {
             uploadTask.dependsOn(remapJar)
