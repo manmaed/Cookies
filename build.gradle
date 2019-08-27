@@ -13,7 +13,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.matthewprenger.cursegradle' version "1.1.2"
+    id 'com.matthewprenger.cursegradle' version "1.4.0"
 }
 
 apply plugin: net.fabricmc.loom.LoomGradlePlugin
@@ -28,10 +28,6 @@ def buildVersion = ENV.BUILD_NUMBER ? "${mod_verison}.${ENV.BUILD_NUMBER}" : "${
 version = buildVersion + "-universal"
 
 archivesBaseName = "${mod_name}"
-
-minecraft {
-
-}
 
 dependencies {
     minecraft "com.mojang:minecraft:" + "${minecraft_version}"

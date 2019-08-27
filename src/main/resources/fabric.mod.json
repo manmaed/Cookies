@@ -17,9 +17,5 @@
     "client" : [
       "net.manmaed.cookies.CookiesClient"
     ]
-  },
-  "depends": {
-    "fabricloader": "=>0.4.0",
-    "fabric": "*"
   }
 }
